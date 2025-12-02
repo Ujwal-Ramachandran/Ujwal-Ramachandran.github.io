@@ -345,74 +345,209 @@ h1, h2, h3, h4 {
   .bento-card { animation-delay: 0s !important; }
 }
 
-/* --- SECTION 4: Dual Expertise Journey --- */
+/* --- SECTION 4: Dual Expertise Styling --- */
 .dual-header {
   text-align: center;
-  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-.dual-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  position: relative;
-}
-
-/* Divider Line */
-.dual-grid::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(to bottom, transparent, var(--neon-blue), transparent);
-  transform: translateX(-50%);
+.dual-header h2 {
+  text-align: center;
+  width: 100%;
+  font-size: 2.0rem;
 }
 
 .col-header {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: var(--text-main);
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 10px;
+  align-items: center;
+  width: 100%;
+  color: var(--neon-blue);    /* Text color */
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
 }
 
+.col-header i {
+  color: whitesmoke;
+  margin-right: 1.25rem;       /* Space between icon & text */
+  font-size: 1.4rem;
+}
+
+
+/* Intro Text */
+.dual-intro {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Grid Layout for Columns */
+.dual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  color: var(--neon-blue);
+}
+
+/* Card Styling */
 .project-card {
   background: var(--bg-panel);
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  border-radius: 8px;
-  border-left: 3px solid transparent;
-  transition: 0.3s;
-  position: relative;
+  border-radius: 12px;
+  border: 1px solid rgba(88, 166, 255, 0.1);
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  transition: all 0.3s ease;
 }
 
 .project-card:hover {
-  border-left: 3px solid var(--neon-blue);
-  background: #1c2128; /* Slightly lighter */
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: translateY(-5px);
+  border-color: var(--neon-blue);
+  box-shadow: 0 5px 20px rgba(88, 166, 255, 0.15);
 }
 
+/* --- FORCE BLUE STYLING --- */
+/* 1. Icons */
+.card-icon {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  background: rgba(88, 166, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: whitesmoke; /* White Icon */
+}
+
+.card-content {
+  flex-grow: 1;
+}
+
+/* 2. Headings */
 .project-card h4 {
-  color: var(--text-main);
+  color: var(--neon-blue); /* Neon Blue Heading */
   margin-bottom: 0.5rem;
+  font-size: 1.1rem;
 }
 
 .project-card p {
   font-size: 0.9rem;
   color: var(--text-muted);
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
 }
 
-.project-card .impact {
+/* 3. Impact Statement */
+.impact {
   display: block;
-  font-style: italic;
+  color: var(--neon-blue); /* Neon Blue Text */
+  font-style: italic;      /* Italicized */
   font-size: 0.85rem;
-  color: var(--neon-blue);
   font-family: var(--font-mono);
+}
+
+/* --- CENTERED SECTION STYLING --- */
+.center-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Scam Agent Card (Central) */
+.central-card {
+  width: 100%;
+  flex-direction: column; /* Stack Icon on top of text */
+  align-items: center;
+  text-align: center;
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(88, 166, 255, 0.05) 100%);
+}
+
+.highlight-icon {
+  width: 60px;
+  height: 60px;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  background: rgba(88, 166, 255, 0.15);
+}
+
+.highlight-impact {
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* /* Power of Convergence Card */
+.convergence-card {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(88, 166, 255, 0.05) 100%);
+  border: 1px solid rgba(88, 166, 255, 0.2);
+  border-radius: 12px;
+  width: 100%;
+}
+
+.convergence-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: whitesmoke;
+}
+
+.convergence-card h4 {
+  color: var(--neon-blue);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.convergence-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.convergence-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--neon-blue);
+  box-shadow: 0 5px 20px rgba(88, 166, 255, 0.15);
+}
+
+/* Animation */
+.cyber-animate {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+  .dual-grid {
+      grid-template-columns: 1fr; /* Stack columns */
+  }
+  .project-card {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+  .card-icon {
+      margin-bottom: 1rem;
+  }
 }
 
 /* --- SECTION 5: Interests Grid --- */

@@ -14,169 +14,219 @@
     <link rel="stylesheet" href="style/main.css">
 </head>
 <body>
+  <canvas id="matrixCanvas"></canvas>
+  <nav class="glass-nav">
+      <div class="nav-content">
+          <div class="logo">&lt;Ujwal/&gt;</div>
+          <ul class="nav-links">
+              <li><a href="#hero">Home</a></li>
+              <li><a href="#journey">Journey</a></li>
+              <li><a href="#expertise">Expertise</a></li>
+              <li><a href="#interests">Interests</a></li>
+              <li><a href="#connect">Connect</a></li>
+          </ul>
+      </div>
+  </nav>
 
-    <canvas id="matrixCanvas"></canvas>
-
-    <nav class="glass-nav">
-        <div class="nav-content">
-            <div class="logo">&lt;Ujwal/&gt;</div>
-            <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#journey">Journey</a></li>
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#interests">Interests</a></li>
-                <li><a href="#connect">Connect</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section id="hero" class="hero-section">
-        <div class="profile-container">
-            <div class="profile-img-wrapper">
-                <img src="https://source.unsplash.com/random/400x400/?hacker,cyberpunk" alt="Ujwal Ramachandran" class="profile-img">
-                <div class="rotating-border"></div>
-            </div>
-        </div>
-        <div class="hero-text">
-            <h1 class="glitch-text" data-text="Hi there, I'm Ujwal! 👋">Hi there, I'm Ujwal! 👋</h1>
-            <h2 class="mono-text">I am a <span class="txt-type" data-wait="2000" data-words='["Data Scientist", "Cybersecurity Enthusiast", "AI Tech Innovator"]'></span></h2>
-            <p class="hero-sub">Currently pursuing Masters in Cybersecurity at NTU Singapore</p>
-            <a href="#journey" class="cta-btn">Explore My Journey</a>
-        </div>
-    </section>
-
-    <section id="journey" class="section-padding">
-      <h2 class="section-title">Mission Status: <span class="neon-text">Active</span></h2>
-      
-      <div class="bento-grid">
-          
-          <div class="bento-card area-about">
-              <h3><i class="fa-solid fa-user-astronaut"></i> About Me</h3>
-              <p>
-                  With over <span class="highlight">3+ years of experience</span> at Optum-UHG, I've developed a deep passion for leveraging cutting-edge AI solutions to solve complex business challenges.
-              </p>
-              <p style="margin-top: 1rem;">
-                  Currently pursuing my <span class="highlight">Masters in Cybersecurity at NTU Singapore</span>, I'm expanding my expertise in threat detection, security automation, and ethical hacking while maintaining my focus on AI innovation.
-              </p>
-              <p style="margin-top: 1rem;">
-                  My unique blend of <span class="highlight">Data Science expertise</span> and <span class="highlight">Cybersecurity knowledge</span> positions me at the forefront of next-generation security solutions.
-              </p>
+  <section id="hero" class="hero-section">
+      <div class="profile-container">
+          <div class="profile-img-wrapper">
+              <img src="https://source.unsplash.com/random/400x400/?hacker,cyberpunk" alt="Ujwal Ramachandran" class="profile-img">
+              <div class="rotating-border"></div>
           </div>
-
-          <div class="bento-card area-lang">
-              <h4><i class="fa-solid fa-code"></i> Languages</h4>
-              <ul class="skill-list">
-                  <li class="skill-pill">Python</li>
-                  <li class="skill-pill">Shell</li>
-                  <li class="skill-pill">SQL</li>
-                  <li class="skill-pill">C / C++</li>
-                  <li class="skill-pill">HTML/CSS</li>
-              </ul>
-          </div>
-
-          <div class="bento-card area-db">
-              <h4><i class="fa-solid fa-database"></i> Databases</h4>
-              <ul class="skill-list">
-                  <li class="skill-pill">MongoDB</li>
-                  <li class="skill-pill">Oracle DB</li>
-                  <li class="skill-pill">MySQL</li>
-              </ul>
-          </div>
-
-          <div class="bento-card area-cyber">
-              <h4><i class="fa-solid fa-shield-halved"></i> Cybersecurity</h4>
-              <ul class="skill-list">
-                  <li class="skill-pill">Vulnerability Assessment</li>
-                  <li class="skill-pill">Ethical Hacking</li>
-              </ul>
-          </div>
-
-          <div class="bento-card area-cloud">
-              <h4><i class="fa-solid fa-cloud"></i> Cloud DevOps</h4>
-              <ul class="skill-list">
-                  <li class="skill-pill">Azure</li>
-                  <li class="skill-pill">Docker</li>
-                  <li class="skill-pill">Jenkins</li>
-                  <li class="skill-pill">Kubernetes</li>
-              </ul>
-          </div>
-
-          <div class="bento-card area-ai">
-              <h4><i class="fa-solid fa-brain"></i> AI & ML</h4>
-              <ul class="skill-list">
-                  <li class="skill-pill">LLM</li>
-                  <li class="skill-pill">Agentic AI</li>
-                  <li class="skill-pill">Prompt Eng.</li>
-                  <li class="skill-pill">MLOps</li>
-              </ul>
-          </div>
-
+      </div>
+      <div class="hero-text">
+          <h1 class="glitch-text" data-text="Hi there, I'm Ujwal! 👋">Hi there, I'm Ujwal! 👋</h1>
+          <h2 class="mono-text">I am a <span class="txt-type" data-wait="2000" data-words='["Data Scientist", "Cybersecurity Enthusiast", "AI Tech Innovator"]'></span></h2>
+          <p class="hero-sub">Currently pursuing Masters in Cybersecurity at NTU Singapore</p>
+          <a href="#journey" class="cta-btn">Explore My Journey</a>
       </div>
   </section>
 
-    <section id="expertise" class="section-padding hidden-section">
-        <div class="dual-header">
-            <h2>Bridging <span class="neon-text">AI Innovation</span> & <span class="neon-text">Cyber Excellence</span></h2>
+  <section id="journey" class="section-padding">
+    <h2 class="section-title">Mission Status: <span class="neon-text">Active</span></h2>
+    
+    <div class="bento-grid">
+        
+        <div class="bento-card area-about">
+            <h3><i class="fa-solid fa-user-astronaut"></i> About Me</h3>
+            <p>
+                With <span class="highlight">3 years of experience</span> at Optum-UHG, I've developed a deep passion for leveraging cutting-edge AI solutions to solve complex business challenges.
+            </p>
+            <p style="margin-top: 1rem;">
+                Currently pursuing my <span class="highlight">Masters in Cybersecurity at NTU Singapore</span>, I'm expanding my expertise in threat detection, security automation, and ethical hacking while maintaining my focus on AI innovation.
+            </p>
+            <p style="margin-top: 1rem;">
+                My unique blend of <span class="highlight">Data Science expertise</span> and <span class="highlight">Cybersecurity knowledge</span> positions me at the forefront of next-generation security solutions.
+            </p>
         </div>
 
-        <div class="dual-grid">
-            <div class="expertise-col">
-                <h3 class="col-header"><i class="fa-solid fa-microchip"></i> AI & Data Science</h3>
-                
-                <div class="project-card">
+        <div class="bento-card area-lang">
+            <h4><i class="fa-solid fa-code"></i> Languages</h4>
+            <ul class="skill-list">
+                <li class="skill-pill">Python</li>
+                <li class="skill-pill">Shell</li>
+                <li class="skill-pill">SQL</li>
+                <li class="skill-pill">C / C++</li>
+                <li class="skill-pill">HTML/CSS</li>
+            </ul>
+        </div>
+
+        <div class="bento-card area-db">
+            <h4><i class="fa-solid fa-database"></i> Databases</h4>
+            <ul class="skill-list">
+                <li class="skill-pill">MongoDB</li>
+                <li class="skill-pill">Oracle DB</li>
+                <li class="skill-pill">MySQL</li>
+            </ul>
+        </div>
+
+        <div class="bento-card area-cyber">
+            <h4><i class="fa-solid fa-shield-halved"></i> Cybersecurity</h4>
+            <ul class="skill-list">
+                <li class="skill-pill">Vulnerability Assessment</li>
+                <li class="skill-pill">Ethical Hacking</li>
+            </ul>
+        </div>
+
+        <div class="bento-card area-cloud">
+            <h4><i class="fa-solid fa-cloud"></i> Cloud DevOps</h4>
+            <ul class="skill-list">
+                <li class="skill-pill">Azure</li>
+                <li class="skill-pill">Docker</li>
+                <li class="skill-pill">Jenkins</li>
+                <li class="skill-pill">Kubernetes</li>
+            </ul>
+        </div>
+
+        <div class="bento-card area-ai">
+            <h4><i class="fa-solid fa-brain"></i> AI & ML</h4>
+            <ul class="skill-list">
+                <li class="skill-pill">LLM</li>
+                <li class="skill-pill">Agentic AI</li>
+                <li class="skill-pill">Prompt Eng.</li>
+                <li class="skill-pill">MLOps</li>
+            </ul>
+        </div>
+
+    </div>
+  </section>
+
+  <section id="expertise" class="section-padding">
+    <div class="dual-header">
+        <h2>Bridging <span class="neon-text">AI Innovation</span> & <span class="neon-text">Cyber Excellence</span></h2>
+        <br>
+        <p class="dual-intro">
+            I bring a unique blend of experience at the intersection of AI/Data Science and Cybersecurity, solving real-world problems with intelligent automation, secure architectures, and performance-driven insights.
+        </p>
+        <br>
+    </div>
+
+    <div class="dual-grid">
+        <div class="expertise-col">
+            <h3 class="col-header"><i class="fa-solid fa-microchip"></i> AI & Data Science</h3>
+            
+            <div class="project-card cyber-animate" style="--delay: 0.1s">
+                <div class="card-icon"><i class="fa-solid fa-file-contract"></i></div>
+                <div class="card-content">
                     <h4>Contract Redlining Automation</h4>
-                    <p>Implemented LLMs and rules-based logic to automate legal contract review.</p>
-                    <span class="impact">Reduced review time by 60%</span>
-                </div>
-
-                <div class="project-card">
-                    <h4>Confidence Scoring for KPIs</h4>
-                    <p>Developed dynamic scoring metrics to evaluate model performance stability.</p>
-                    <span class="impact">Increased data reliability by 25%</span>
-                </div>
-
-                <div class="project-card">
-                    <h4>Real-Time Bot Automation</h4>
-                    <p>Engineered live data pipelines for immediate automated responses.</p>
-                    <span class="impact">Zero-latency execution achieved</span>
-                </div>
-
-                <div class="project-card">
-                    <h4>Competitive Web Scraping</h4>
-                    <p>Built robust scrapers for multi-site product data aggregation.</p>
-                    <span class="impact">Aggregated 10k+ data points daily</span>
+                    <p>Led PoCs to automate contract redlining, track revisions, and generate insights using LLMs and rules-based logic.</p>
+                    <span class="impact">Reduced legal review time and improved change accuracy</span>
                 </div>
             </div>
 
-            <div class="expertise-col">
-                <h3 class="col-header"><i class="fa-solid fa-user-shield"></i> Cybersecurity</h3>
-
-                <div class="project-card">
-                    <h4>Passwordless Authentication</h4>
-                    <p>Implemented Keycloak with zero-trust architecture principles.</p>
-                    <span class="impact">Eliminated credential phishing vectors</span>
+            <div class="project-card cyber-animate" style="--delay: 0.2s">
+                <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="card-content">
+                    <h4>Confidence Scoring for KPIs</h4>
+                    <p>Created dynamic scoring metrics that adapt KPI weights based on historical and live data trends.</p>
+                    <span class="impact">Enabled smarter performance decisions and accountability</span>
                 </div>
+            </div>
 
-                <div class="project-card">
-                    <h4>Application Security</h4>
-                    <p>Automated dependency checks and exploit scanning using OWASP tools.</p>
-                    <span class="impact">Patched 15 critical vulnerabilities</span>
+            <div class="project-card cyber-animate" style="--delay: 0.3s">
+                <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
+                <div class="card-content">
+                    <h4>Real-Time Bot Automation</h4>
+                    <p>Built live data pipelines that enabled bots to auto-generate orders and claims from upstream sources.</p>
+                    <span class="impact">Accelerated operations and lowered manual workload</span>
                 </div>
+            </div>
 
-                <div class="project-card">
-                    <h4>Secure Coding Practices</h4>
-                    <p>Auditing CI/CD pipelines to enforce security gates before deployment.</p>
-                    <span class="impact">Standardized DevSecOps workflow</span>
-                </div>
-
-                <div class="project-card">
-                    <h4>OAuth 2.0 Integration</h4>
-                    <p>Spring Boot RBAC implementation for granular access control.</p>
-                    <span class="impact">Enhanced API security posture</span>
+            <div class="project-card cyber-animate" style="--delay: 0.4s">
+                <div class="card-icon"><i class="fa-solid fa-spider"></i></div>
+                <div class="card-content">
+                    <h4>Competitive Web Scraping</h4>
+                    <p>Designed tools to scrape multi-site product data, bypass CAPTCHAs, and deliver reports on pricing trends.</p>
+                    <span class="impact">Contributed to 10% sales growth through pricing strategy</span>
                 </div>
             </div>
         </div>
-    </section>
+
+        <div class="expertise-col">
+            <h3 class="col-header"><i class="fa-solid fa-user-shield"></i> Cybersecurity</h3>
+
+            <div class="project-card cyber-animate" style="--delay: 0.1s">
+                <div class="card-icon"><i class="fa-solid fa-key"></i></div>
+                <div class="card-content">
+                    <h4>Passwordless Authentication</h4>
+                    <p>Implemented secure passwordless authentication systems using Keycloak and modern security protocols for enterprise applications.</p>
+                    <span class="impact">Enabled zero-trust architecture across internal apps</span>
+                </div>
+            </div>
+
+            <div class="project-card cyber-animate" style="--delay: 0.2s">
+                <div class="card-icon"><i class="fa-solid fa-shield-virus"></i></div>
+                <div class="card-content">
+                    <h4>Application Security</h4>
+                    <p>Led efforts to identify and resolve security flaws through dependency checks and exploit scanning.</p>
+                    <span class="impact">Reduced codebase vulnerabilities by 90%</span>
+                </div>
+            </div>
+
+            <div class="project-card cyber-animate" style="--delay: 0.3s">
+                <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="card-content">
+                    <h4>Secure Coding Practices</h4>
+                    <p>Audited codebases and CI/CD pipelines for secrets, weak libraries, and insecure configurations.</p>
+                    <span class="impact">Improved code quality and release readiness</span>
+                </div>
+            </div>
+
+            <div class="project-card cyber-animate" style="--delay: 0.4s">
+                <div class="card-icon"><i class="fa-solid fa-id-card"></i></div>
+                <div class="card-content">
+                    <h4>OAuth 2.0 Integration</h4>
+                    <p>Secured enterprise web apps using Spring Boot and OAuth 2.0 for seamless authorization.</p>
+                    <span class="impact">Ensured role-based access and compliance</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="center-wrapper">
+        
+        <div class="project-card central-card cyber-animate" style="--delay: 0.6s">
+            <div class="card-icon highlight-icon"><i class="fa-solid fa-user-secret"></i></div>
+            <div class="card-content text-center">
+                <h4>Scam Detection Agent</h4>
+                <p>A multi-agent AI system that analyzes SMS messages and their linked websites to detect phishing and scams with layered intelligence.</p>
+                <span class="impact highlight-impact">Real-time threat identification across communication channels</span>
+            </div>
+        </div>
+
+        <div class="convergence-card cyber-animate" style="--delay: 0.8s">
+            <div class="convergence-icons">
+                <i class="fa-solid fa-microchip"></i>
+                <i class="fa-solid fa-chevron-right" style="font-size: 1rem; opacity: 0.7;"></i>
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h4>The Power of Convergence</h4>
+            <p>Where artificial intelligence meets cybersecurity, innovation thrives. My dual expertise enables me to build secure, intelligent systems that protect and perform.</p>
+        </div>
+
+    </div>
+</section>
 
     <section id="interests" class="section-padding hidden-section">
         <h2 class="section-title">Ask Me About</h2>
@@ -258,7 +308,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Ujwal Ramachandran. System Online.</p>
+        <p>&copy; <script> document.write(new Date().getFullYear())</script> Ujwal Ramachandran. System Online.</p>
     </footer>
 
     <script src="js/style.js"></script>
