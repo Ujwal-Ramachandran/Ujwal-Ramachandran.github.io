@@ -551,48 +551,204 @@ h1, h2, h3, h4 {
 }
 
 /* --- SECTION 5: Interests Grid --- */
+/* ---- Interests header (right aligned) ---- */
+#interests {
+  text-align: right;
+}
+
+#interests .section-header {
+  max-width: 700px;
+  margin-left: auto;
+  margin-bottom: 2.5rem;
+  text-align: right;
+}
+
+/* Title with ONLY a right blue line */
+#interests .section-title {
+  position: relative;
+  display: inline-block;
+  padding-right: 1.2rem;   /* space before right line */
+  padding-left: 0;         /* kill any left padding from global rules */
+  border-left: none !important;   /* kill any left border */
+}
+
+#interests .section-title::before {
+  content: none !important;       /* kill any global ::before line */
+}
+
+#interests .section-title::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;        /* slightly thicker for emphasis */
+  height: 60px;      /* ← MATCHES the original tall left line */
+  background: var(--neon-blue);
+  border-radius: 4px;
+}
+
+/* Subtitle */
+#interests .section-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 0.75rem;
+}
+
+/* Blue underline under subtitle (aligned right) */
+#interests .section-underline {
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--neon-blue);
+  border-radius: 999px;
+  margin: 1.5rem 0 0 auto;
+}
+
+
+/* ---- Interests grid ---- */
 .interests-grid {
+  max-width: 1100px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2rem;
 }
 
 .interest-card {
-  background: var(--bg-panel);
-  padding: 2rem;
+  position: relative;
   text-align: center;
-  border-radius: 12px;
+  background: transparent;
+  border-radius: 20px;
+  padding: 1px;                     /* for outer subtle border */
   border: 1px solid rgba(255,255,255,0.05);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
 }
 
-.interest-card i {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  transition: transform 0.3s;
+.interest-inner {
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.03), transparent 60%);
+  border-radius: 18px;
+  padding: 2.2rem 2rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 }
 
+/* Icon circle */
+.interest-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.4rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.interest-icon i {
+  font-size: 2rem;
+  color: #fff;
+}
+
+/* Title & text */
 .interest-card h3 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
 }
 
-/* Color Specific Hovers */
-.card-purple i { color: var(--color-purple); }
-.card-purple:hover { border-color: var(--color-purple); box-shadow: 0 0 15px rgba(163, 113, 247, 0.2); }
-
-.card-green i { color: var(--color-green); }
-.card-green:hover { border-color: var(--color-green); box-shadow: 0 0 15px rgba(63, 185, 80, 0.2); }
-
-.card-red i { color: var(--color-red); }
-.card-red:hover { border-color: var(--color-red); box-shadow: 0 0 15px rgba(248, 81, 73, 0.2); }
-
-.card-blue i { color: var(--neon-blue); }
-.card-blue:hover { border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(88, 166, 255, 0.2); }
-
-.interest-card:hover i {
-  transform: scale(1.2);
+.interest-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
 }
+
+/* Hover effects */
+.interest-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.7);
+}
+
+/* Accent bar at bottom on hover */
+.interest-card::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  width: 60px;
+  height: 3px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+/* ---- Color variants ---- */
+.card-purple .interest-icon {
+  background: radial-gradient(circle at 30% 20%, #c084fc, #6d28d9);
+}
+
+.card-green .interest-icon {
+  background: radial-gradient(circle at 30% 20%, #4ade80, #16a34a);
+}
+
+.card-red .interest-icon {
+  background: radial-gradient(circle at 30% 20%, #fb7185, #ef4444);
+}
+
+.card-blue .interest-icon {
+  background: radial-gradient(circle at 30% 20%, #60a5fa, #2563eb);
+}
+
+/* Purple */
+.card-purple:hover {
+  border-color: var(--color-purple);
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(163,113,247,0.15),
+    transparent 90%
+  );
+}
+
+/* Green */
+.card-green:hover {
+  border-color: var(--color-green);
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(63,185,80,0.15),
+    transparent 90%
+  );
+}
+
+/* Red */
+.card-red:hover {
+  border-color: var(--color-red);
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(248,81,73,0.15),
+    transparent 90%
+  );
+}
+
+/* Blue */
+.card-blue:hover {
+  border-color: var(--neon-blue);
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(88,166,255,0.15),
+    transparent 90%
+  );
+}
+
+
+.card-purple:hover::after { background: var(--color-purple); }
+.card-green:hover::after  { background: var(--color-green); }
+.card-red:hover::after    { background: var(--color-red); }
+.card-blue:hover::after   { background: var(--neon-blue); }
+
 
 /* --- SECTION 6: Gallery Preview --- */
 .gallery-grid {
