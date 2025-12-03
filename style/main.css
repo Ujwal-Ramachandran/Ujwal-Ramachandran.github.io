@@ -200,6 +200,85 @@ h1, h2, h3, h4 {
   box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
 }
 
+/* Glitchy "Active" inside Mission Status */
+.status-glitch {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Layers for glitch effect */
+.status-glitch::before,
+.status-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Left cyan slice */
+.status-glitch::before {
+  color: #4cc9ff;
+  transform: translateX(-2px);
+}
+
+/* Right magenta slice */
+.status-glitch::after {
+  color: #ff4cff;
+  transform: translateX(2px);
+}
+
+/* Hover – trigger glitch */
+.status-glitch:hover {
+  animation: status-glitch-main 400ms infinite;
+}
+
+.status-glitch:hover::before,
+.status-glitch:hover::after {
+  opacity: 1;
+  animation: status-glitch-slices 400ms infinite;
+}
+
+/* Main word subtle horizontal jitter */
+@keyframes status-glitch-main {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(1px); }
+  40%  { transform: translateX(-1px); }
+  60%  { transform: translateX(2px); }
+  80%  { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+/* Horizontal sliced glitch for pseudo elements */
+@keyframes status-glitch-slices {
+  0% {
+    clip-path: inset(0 0 80% 0);
+    transform: translateX(-2px);
+  }
+  20% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translateX(3px);
+  }
+  40% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translateX(-3px);
+  }
+  60% {
+    clip-path: inset(60% 0 20% 0);
+    transform: translateX(2px);
+  }
+  80% {
+    clip-path: inset(80% 0 0 0);
+    transform: translateX(-2px);
+  }
+  100% {
+    clip-path: inset(0 0 80% 0);
+    transform: translateX(0);
+  }
+}
+
 /* --- SECTION 3: Bento Grid (Responsive) --- */
 .bento-grid {
   display: grid;

@@ -1,3 +1,56 @@
+//Smooth Scroller
+// Smooth scroll with soft easing (Apple-like)
+function smoothScrollTo(targetY, duration = 800) {
+    const startY = window.pageYOffset;
+    const distance = targetY - startY;
+    const startTime = performance.now();
+  
+    // Ease in-out cubic
+    function easeInOutCubic(t) {
+      return t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+  
+    function animation(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutCubic(progress);
+  
+      window.scrollTo(0, startY + distance * eased);
+  
+      if (elapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    }
+  
+    requestAnimationFrame(animation);
+  }
+  
+  // Attach to nav links
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+  
+      // Only handle in-page anchors like #journey
+      if (!href || !href.startsWith('#')) return;
+  
+      const targetEl = document.querySelector(href);
+      if (!targetEl) return;
+  
+      e.preventDefault();
+  
+      const nav = document.querySelector('.glass-nav');
+      const navHeight = nav ? nav.offsetHeight : 0;
+  
+      const elementTop = targetEl.getBoundingClientRect().top + window.pageYOffset;
+      const offsetTop = elementTop - navHeight - 16; // extra 16px breathing room
+  
+      smoothScrollTo(offsetTop, 800); // 800ms = nice, soft scroll
+    });
+  });
+  
+
 /* --- 1. Matrix Code Rain Effect --- */
 const canvas = document.getElementById('matrixCanvas');
 const ctx = canvas.getContext('2d');
@@ -135,3 +188,17 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.hidden-section').forEach(section => {
     observer.observe(section);
 });
+
+
+// Game start sequence
+// Global counter you can use later
+window.missionClickCount = window.missionClickCount || 0;
+
+const missionStatusEl = document.getElementById('mission-status');
+
+if (missionStatusEl) {
+  missionStatusEl.addEventListener('click', () => {
+    window.missionClickCount += 1;
+    console.log('Mission Status clicked:', window.missionClickCount);
+  });
+}
