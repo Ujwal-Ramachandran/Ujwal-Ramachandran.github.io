@@ -799,10 +799,20 @@ h1, h2, h3, h4 {
   margin: 0 auto;
 }
 
+.connect-subtitle {
+  text-align: center;
+  font-size: 1.4rem;               /* Slightly bigger */
+  color: var(--neon-blue);         /* Blue */
+  margin-top: -1rem;               /* Pull it closer to previous line */
+  margin-bottom: 2rem;             /* Space above the cards */
+  font-weight: 600;
+}
+
 .connect-card {
   background: var(--bg-panel);
   display: flex;
   align-items: center;
+  justify-content: center;      /* Center icon + text horizontally */
   gap: 1rem;
   padding: 1.5rem;
   border-radius: 12px;
@@ -810,13 +820,17 @@ h1, h2, h3, h4 {
   color: var(--text-main);
   border: 1px solid transparent;
   transition: 0.3s;
+  text-align: center;           /* Center the text itself */
+}
+
+.connect-card span {
+  transition: color 0.3s;       /* Smooth text color change on hover */
 }
 
 .center-card {
-  grid-column: 1 / -1; /* Span full width */
+  grid-column: 1 / -1;          /* Span full width */
   width: 60%;
   margin: 0 auto;
-  justify-content: center;
 }
 
 .icon-circle {
@@ -827,14 +841,125 @@ h1, h2, h3, h4 {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--neon-blue);
+  color: var(--neon-blue);      /* Icon starts blue */
+  transition: color 0.3s, background 0.3s;
 }
 
+/* Hover state: lift card, change colors */
 .connect-card:hover {
   transform: translateY(-5px);
   border-color: var(--neon-blue);
   background: #1c2128;
 }
+
+.connect-card:hover span {
+  color: var(--neon-blue);      /* Text turns blue */
+}
+
+.connect-card:hover .icon-circle {
+  color: #ffffff;               /* Icon turns white */
+  background: rgba(0,0,0,0.4);  /* Optional: slightly darker circle */
+}
+
+/* Optional: better on mobile */
+@media (max-width: 768px) {
+  .connect-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .center-card {
+    width: 100%;
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Base "System Online." look – subtle blue glow */
+.system-status {
+  position: relative;
+  color: var(--neon-blue);
+  text-shadow: 0 0 6px rgba(0, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+/* Glitch layers (hidden until hover) */
+.system-status::before,
+.system-status::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Cyan layer */
+.system-status::before {
+  color: #00ffff;
+  transform: translate(1px, 0);
+}
+
+/* Magenta layer */
+.system-status::after {
+  color: #ff00ff;
+  transform: translate(-1px, 0);
+}
+
+/* Hover: start glitching */
+.system-status:hover::before,
+.system-status:hover::after {
+  opacity: 1;
+  animation: glitch 450ms infinite;
+}
+
+.system-status:hover {
+  animation: glitch-base 450ms infinite;
+}
+
+/* Base text tiny jitter */
+@keyframes glitch-base {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(0.5px, -0.5px); }
+  40%  { transform: translate(-0.5px, 0.5px); }
+  60%  { transform: translate(0.5px, 0.5px); }
+  80%  { transform: translate(-0.5px, -0.5px); }
+  100% { transform: translate(0); }
+}
+
+/* Glitch keyframes for pseudo-elements */
+@keyframes glitch {
+  0% {
+    clip-path: inset(0 0 80% 0);
+    transform: translate(-1px, -1px);
+  }
+  20% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    clip-path: inset(60% 0 20% 0);
+    transform: translate(1px, 1px);
+  }
+  80% {
+    clip-path: inset(80% 0 0 0);
+    transform: translate(-1px, 1px);
+  }
+  100% {
+    clip-path: inset(0 0 80% 0);
+    transform: translate(0, 0);
+  }
+}
+
+
 
 /* --- Utilities --- */
 .hidden-section {
