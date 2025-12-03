@@ -182,6 +182,7 @@ h1, h2, h3, h4 {
 }
 
 .cta-btn {
+  position: relative;
   display: inline-block;
   padding: 10px 25px;
   background: transparent;
@@ -190,15 +191,69 @@ h1, h2, h3, h4 {
   text-decoration: none;
   font-family: var(--font-mono);
   text-transform: uppercase;
-  transition: 0.3s;
+  letter-spacing: 0.08em;
   cursor: pointer;
+  overflow: hidden;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
-.cta-btn:hover {
-  background: var(--neon-blue);
-  color: var(--bg-dark);
-  box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
+/* Text / arrow wrapper for slight slide */
+.cta-btn span {
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
+
+/* Light sweep / sheen */
+.cta-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(88, 166, 255, 0.25) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+/* Hover state */
+.cta-btn:hover {
+  background: rgba(88, 166, 255, 0.06);
+  box-shadow: 0 0 12px rgba(88, 166, 255, 0.5);
+  transform: translateY(-2px);
+  border-color: var(--neon-blue);
+}
+
+/* Run the sheen animation only on hover */
+.cta-btn:hover::before {
+  animation: cta-sheen 0.7s ease-out;
+}
+
+/* Nudge text slightly right on hover */
+.cta-btn:hover span {
+  transform: translateX(4px);
+}
+
+/* Sheen keyframes */
+@keyframes cta-sheen {
+  from {
+    left: -120%;
+  }
+  to {
+    left: 120%;
+  }
+}
+
 
 /* Glitchy "Active" inside Mission Status */
 .status-glitch {
@@ -444,17 +499,16 @@ h1, h2, h3, h4 {
   justify-content: center;
   align-items: center;
   width: 100%;
-  color: var(--neon-blue);    /* Text color */
+  color: var(--neon-blue);
   margin-bottom: 2rem;
   font-size: 1.2rem;
 }
 
 .col-header i {
   color: whitesmoke;
-  margin-right: 1.25rem;       /* Space between icon & text */
+  margin-right: 1.25rem;
   font-size: 1.4rem;
 }
-
 
 /* Intro Text */
 .dual-intro {
@@ -468,7 +522,7 @@ h1, h2, h3, h4 {
   line-height: 1.6;
 }
 
-/* Grid Layout for Columns */
+/* Grid Layout */
 .dual-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -494,10 +548,10 @@ h1, h2, h3, h4 {
   transform: translateY(-5px);
   border-color: var(--neon-blue);
   box-shadow: 0 5px 20px rgba(88, 166, 255, 0.15);
+  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(255,255,255,0.05) 100%);
 }
 
-/* --- FORCE BLUE STYLING --- */
-/* 1. Icons */
+/* FORCE BLUE STYLING — Base Icons */
 .card-icon {
   flex-shrink: 0;
   width: 45px;
@@ -508,18 +562,19 @@ h1, h2, h3, h4 {
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  color: whitesmoke; /* White Icon */
+  color: whitesmoke;
+  transition: all 0.3s ease;
 }
 
 .card-content {
   flex-grow: 1;
 }
 
-/* 2. Headings */
 .project-card h4 {
-  color: var(--neon-blue); /* Neon Blue Heading */
+  color: var(--neon-blue);
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
+  transition: all 0.3s ease;
 }
 
 .project-card p {
@@ -529,13 +584,28 @@ h1, h2, h3, h4 {
   line-height: 1.5;
 }
 
-/* 3. Impact Statement */
 .impact {
   display: block;
-  color: var(--neon-blue); /* Neon Blue Text */
-  font-style: italic;      /* Italicized */
+  color: var(--neon-blue);
+  font-style: italic;
   font-size: 0.85rem;
   font-family: var(--font-mono);
+  transition: all 0.3s ease;
+}
+
+/* --- COLOR FLIP ON HOVER (applies to all cards) --- */
+.project-card:hover h4,
+.central-card:hover h4,
+.convergence-card:hover h4,
+.project-card:hover .impact,
+.central-card:hover .impact {
+  color: #ffffff;
+}
+
+.project-card:hover .card-icon,
+.central-card:hover .card-icon {
+  background: rgba(255,255,255,0.12);
+  color: var(--neon-blue);
 }
 
 /* --- CENTERED SECTION STYLING --- */
@@ -548,14 +618,15 @@ h1, h2, h3, h4 {
   margin: 0 auto;
 }
 
-/* Scam Agent Card (Central) */
+/* Scam Agent Card */
 .central-card {
   width: 100%;
-  flex-direction: column; /* Stack Icon on top of text */
+  flex-direction: column;
   align-items: center;
   text-align: center;
-  border: 1px solid rgba(88, 166, 255, 0.3);
-  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(88, 166, 255, 0.05) 100%);
+  border: 1px solid rgba(88,166,255,0.3);
+  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(88,166,255,0.05) 100%);
+  transition: all 0.3s ease;
 }
 
 .highlight-icon {
@@ -563,7 +634,7 @@ h1, h2, h3, h4 {
   height: 60px;
   font-size: 1.8rem;
   margin-bottom: 1rem;
-  background: rgba(88, 166, 255, 0.15);
+  background: rgba(88,166,255,0.15);
 }
 
 .highlight-impact {
@@ -571,14 +642,21 @@ h1, h2, h3, h4 {
   margin-top: 0.5rem;
 }
 
-/* /* Power of Convergence Card */
+/* Power of Convergence */
 .convergence-card {
   text-align: center;
   padding: 2rem;
-  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(88, 166, 255, 0.05) 100%);
-  border: 1px solid rgba(88, 166, 255, 0.2);
+  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(88,166,255,0.05) 100%);
+  border: 1px solid rgba(88,166,255,0.2);
   border-radius: 12px;
   width: 100%;
+  transition: all 0.3s ease;
+}
+
+.convergence-card h4 {
+  color: var(--neon-blue);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 
 .convergence-icons {
@@ -591,21 +669,35 @@ h1, h2, h3, h4 {
   color: whitesmoke;
 }
 
-.convergence-card h4 {
-  color: var(--neon-blue);
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+.convergence-icons i {
+  transition: transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 }
 
-.convergence-card p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-}
-
+/* Power of Convergence Hover Effects */
 .convergence-card:hover {
   transform: translateY(-5px);
   border-color: var(--neon-blue);
-  box-shadow: 0 5px 20px rgba(88, 166, 255, 0.15);
+  box-shadow: 0 5px 20px rgba(88,166,255,0.15);
+  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(255,255,255,0.05) 100%);
+}
+
+.convergence-card:hover .convergence-icons i {
+  color: var(--neon-blue);
+}
+
+/* Icons slide closer */
+.convergence-card:hover .convergence-icons i:first-child {
+  transform: translateX(8px);
+}
+
+.convergence-card:hover .convergence-icons i:last-child {
+  transform: translateX(-8px);
+}
+
+/* Chevron subtle emphasis */
+.convergence-card:hover .convergence-icons i:nth-child(2) {
+  transform: scale(1.15);
+  opacity: 1;
 }
 
 /* Animation */
@@ -618,16 +710,17 @@ h1, h2, h3, h4 {
 /* Mobile Responsive */
 @media (max-width: 900px) {
   .dual-grid {
-      grid-template-columns: 1fr; /* Stack columns */
+    grid-template-columns: 1fr;
   }
   .project-card {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
   .card-icon {
-      margin-bottom: 1rem;
+    margin-bottom: 1rem;
   }
 }
+
 
 /* --- SECTION 5: Interests Grid --- */
 /* ---- Interests header (right aligned) ---- */
@@ -843,17 +936,29 @@ h1, h2, h3, h4 {
   border-radius: 12px;
   overflow: hidden;
   text-decoration: none;
+  transform: translateY(0) scale(1);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    filter 0.4s ease;
 }
 
 .gallery-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s;
+  transition: transform 0.6s ease;
+}
+
+/* Hover effect: enlarge + glow */
+.gallery-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 0 25px var(--glow, rgba(0, 200, 255, 0.55));
+  filter: brightness(1.03);
 }
 
 .gallery-card:hover img {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 .gallery-card .overlay {
@@ -868,6 +973,136 @@ h1, h2, h3, h4 {
 
 .gallery-card h4 { margin-bottom: 0.2rem; }
 .gallery-card p { font-size: 0.8rem; opacity: 0.8; }
+
+/* --- Gallery modal --- */
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  display: none;           /* hidden by default */
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.gallery-modal.open {
+  display: flex;
+}
+
+.gallery-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(0, 200, 255, 0.25), transparent),
+              rgba(0,0,0,0.85);
+  backdrop-filter: blur(6px);
+}
+
+.gallery-modal-inner {
+  position: relative;
+  max-width: 900px;
+  width: min(90vw, 900px);
+  border-radius: 18px;
+  padding: 2rem;
+  background: radial-gradient(circle at top, rgba(0, 200, 255, 0.18), transparent),
+              rgba(10,12,20,0.98);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.gallery-modal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .gallery-modal-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gallery-modal-image-wrap {
+  border-radius: 16px;
+  overflow: hidden;
+  max-height: 500px;
+}
+
+.gallery-modal-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-modal-text h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.gallery-modal-text p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Close button */
+.gallery-modal-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.9rem;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1.7rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem 0.4rem;
+  border-radius: 999px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-modal-close:hover {
+  background: rgba(255,255,255,0.12);
+  transform: scale(1.05);
+}
+
+.cta-btn.secondary-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+/* moving silver diagonal line */
+.cta-btn.secondary-btn::after {
+  content: "";
+  position: absolute;
+  top: -120%;
+  left: -40%;
+  width: 40%;
+  height: 340%;
+  background: linear-gradient(120deg,
+              transparent,
+              rgba(255, 255, 255, 0.85),
+              transparent);
+  transform: translateX(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cta-btn.secondary-btn:hover::after,
+.cta-btn.secondary-btn:focus-visible::after {
+  opacity: 1;
+  animation: button-silver-swipe 0.75s ease-out forwards;
+}
+
+@keyframes button-silver-swipe {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(260%);
+  }
+}
+
 
 /* --- SECTION 7: Connect Grid --- */
 .connect-grid {
@@ -1038,6 +1273,65 @@ footer {
   }
 }
 
+/* --- Footer warning + overlay --- */
+
+/* Warning pill */
+.system-warning {
+  position: fixed;
+  bottom: 80px; /* sits above the footer */
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(13, 17, 23, 0.95); /* matches bg-dark aesthetic */
+  border: 1px solid rgba(248, 81, 73, 0.7); /* subtle alert red */
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-main);
+  box-shadow: 0 0 18px rgba(248, 81, 73, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 200;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Small label badge */
+.system-warning-label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(248, 81, 73, 0.15);
+  border: 1px solid rgba(248, 81, 73, 0.6);
+  color: #ffb4b4;
+}
+
+/* Visible state */
+.system-warning.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Fade-to-black overlay */
+#screen-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 999; /* above everything */
+  transition: opacity 1s ease;
+}
+
+/* When active, fade in */
+#screen-overlay.fade-in {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 
 /* --- Utilities --- */

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Firewall | Ujwal Ramachandran</title>
+    <link rel="stylesheet" href="style/game.css">
+</head>
+<body>
+    <a href="index.html" id="back-to-home" class="cyber-btn">
+        &lt; // RETURN_ROOT
+    </a>
+
+    <div id="neural-game-container">
+        <canvas id="neural-canvas"></canvas>
+        <div id="neural-ui">
+            <div class="hud-panel top-left">
+                <h3>SYSTEM STATUS</h3>
+                <p>INTEGRITY: <span id="game-integrity">100%</span></p>
+                <p>DATA SECURED: <span id="game-score">0</span></p>
+            </div>
+
+            <div id="game-menu" class="terminal-window">
+                <h1>NEURAL FIREWALL</h1>
+                <p>> PROTECT THE CORE.</p>
+                <p>> ALLOW GREEN DATA.</p>
+                <p>> BLOCK RED MALWARE.</p>
+                <p>> CLICK NODES TO TOGGLE GATES.</p>
+                <br>
+                <button id="start-btn" class="cyber-btn">INITIALIZE SEQUENCE</button>
+                <button id="close-game-btn" class="cyber-btn warning">TERMINATE CONNECTION</button>
+            </div>
+
+            <div id="game-over-screen" class="terminal-window" style="display: none;">
+                <h1 style="color: #f85149;">SYSTEM BREACHED</h1>
+                <p>FINAL SCORE: <span id="final-score">0</span></p>
+                <br>
+                <button id="restart-btn" class="cyber-btn">REBOOT SYSTEM</button>
+                <button id="exit-btn" class="cyber-btn warning">LOGOUT</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>

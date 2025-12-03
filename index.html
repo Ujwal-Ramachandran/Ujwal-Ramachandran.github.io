@@ -39,7 +39,8 @@
           <h1 class="glitch-text" data-text="Hi there, I'm Ujwal! 👋">Hi there, I'm Ujwal! 👋</h1>
           <h2 class="mono-text">I am a <span class="txt-type" data-wait="2000" data-words='["Data Scientist", "Cybersecurity Enthusiast", "AI Tech Innovator"]'></span></h2>
           <p class="hero-sub">Currently pursuing Masters in Cybersecurity at NTU Singapore</p>
-          <a href="#journey" class="cta-btn">Explore My Journey</a>
+          <a href="#journey" class="cta-btn"><span>Explore My Journey →</span></a>
+          
       </div>
   </section>
 
@@ -301,35 +302,56 @@
     </div>
   </section>
 
-  <section id="gallery-preview" class="section-padding hidden-section">
-      <h2 class="section-title">Visual Logs</h2>
-      <div class="gallery-grid">
-          <a href="gallery.html" class="gallery-card">
-              <img src="style\img\gallery\5.jpg" alt="Photo 1">
-              <div class="overlay">
-                  <h4>Forest Guardian</h4>
-                  <p>Red weaver ants working together on a large green leaf with detailed leaf venation visible.</p>
-              </div>
-          </a>
-          <a href="gallery.html" class="gallery-card">
-              <img src="style\img\gallery\2.jpg" alt="Photo 2">
-              <div class="overlay">
-                  <h4>Meadows</h4>
-                  <p>Golden ornamental grass swaying in natural field with purple and amber hues.</p>
-              </div>
-          </a>
-          <a href="gallery.html" class="gallery-card">
-              <img src="style\img\gallery\14.jpg" alt="Photo 3">
-              <div class="overlay">
-                  <h4>Yellow Candle Cluster</h4>
-                  <p>Top view of a cluster of yellow-hued candle lights forming a spherical shape against a black background.</p>
-              </div>
-          </a>
+    <section id="gallery-preview" class="section-padding hidden-section">
+        <h2 class="section-title">Visual Logs</h2>
+        <div class="gallery-grid">
+        <a href="gallery.html" class="gallery-card" style="--glow:#32ff8a;">
+            <img src="style/img/gallery/5.jpg" alt="Photo 1">
+            <div class="overlay">
+            <h4>Forest Guardian</h4>
+            <p>Red weaver ants working together on a large green leaf with detailed leaf venation visible.</p>
+            </div>
+        </a>
+
+        <a href="gallery.html" class="gallery-card" style="--glow:#ff8a3c;">
+            <img src="style/img/gallery/2.jpg" alt="Photo 2">
+            <div class="overlay">
+            <h4>Meadows</h4>
+            <p>Golden ornamental grass swaying in natural field with purple and amber hues.</p>
+            </div>
+        </a>
+
+        <a href="gallery.html" class="gallery-card" style="--glow:#ffd94a;">
+            <img src="style/img/gallery/14.jpg" alt="Photo 3">
+            <div class="overlay">
+            <h4>Yellow Candle Cluster</h4>
+            <p>Top view of a cluster of yellow-hued candle lights forming a spherical shape against a black background.</p>
+            </div>
+        </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+        <a href="gallery.html" class="cta-btn secondary-btn">See Full Gallery</a>
+        </div>
+    </section>
+    <div id="gallery-modal" class="gallery-modal">
+        <div class="gallery-modal-backdrop"></div>
+        <div class="gallery-modal-inner">
+          <button class="gallery-modal-close" aria-label="Close">&times;</button>
+      
+          <div class="gallery-modal-layout">
+            <div class="gallery-modal-image-wrap">
+              <img src="" alt="">
+            </div>
+            <div class="gallery-modal-text">
+              <h3></h3>
+              <p></p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="text-align: center; margin-top: 2rem;">
-          <a href="gallery.html" class="cta-btn secondary-btn">See Full Gallery</a>
-      </div>
-  </section>
+      
+  
 
     <section id="connect" class="section-padding hidden-section">
         <h2 class="section-title">Establish Uplink</h2>
@@ -341,7 +363,7 @@
         <div class="connect-grid">
             <a href="mailto:contactme.ujwal@gmail.com" class="connect-card">
                 <div class="icon-circle"><i class="fa-solid fa-envelope"></i></div>
-                <span>contactme.ujwal@gmail.com</span>
+                <span>Chat over Email</span>
             </a>
             
             <a href="https://www.linkedin.com/in/ujwal-ramachandran-28b753199/" target="_blank" class="connect-card">
@@ -357,12 +379,20 @@
     </section>
     <footer>
         <p>
-          &copy;
-          <script>document.write(new Date().getFullYear())</script>
+          &copy; <script>document.write(new Date().getFullYear())</script>
           Ujwal Ramachandran.
           <span class="system-status" data-text="System Online.">System Online.</span>
         </p>
-      </footer>      
+    </footer>
+    <!-- Activity warning toast -->
+    <div id="activity-warning" class="system-warning">
+    <span class="system-warning-label">Warning</span>
+    <span class="system-warning-text">You are not Active enough.</span>
+    </div>
+    
+    <!-- Fullscreen fade overlay for redirect -->
+    <div id="screen-overlay"></div>
+      
     <script src="js/style.js"></script>
 </body>
 </html>

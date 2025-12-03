@@ -49,6 +49,27 @@ function smoothScrollTo(targetY, duration = 800) {
       smoothScrollTo(offsetTop, 800); // 800ms = nice, soft scroll
     });
   });
+
+// Apply smooth scrolling to ANY link with an anchor href (e.g., #journey)
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (!href || href === '#') return;
+  
+      const target = document.querySelector(href);
+      if (!target) return;
+  
+      e.preventDefault();
+  
+      const nav = document.querySelector('.glass-nav');
+      const navHeight = nav ? nav.offsetHeight : 0;
+  
+      const elementTop = target.getBoundingClientRect().top + window.scrollY;
+      const offsetTop = elementTop - navHeight - 16;
+  
+      smoothScrollTo(offsetTop, 900); // CTA can be slightly slower for drama
+    });
+  });
   
 
 /* --- 1. Matrix Code Rain Effect --- */
@@ -190,8 +211,56 @@ document.querySelectorAll('.hidden-section').forEach(section => {
 });
 
 
+  (function() {
+    const cards = document.querySelectorAll('.gallery-card');
+    const modal = document.getElementById('gallery-modal');
+    if (!modal) return;
+
+    const modalImg      = modal.querySelector('.gallery-modal-image-wrap img');
+    const modalTitle    = modal.querySelector('.gallery-modal-text h3');
+    const modalCaption  = modal.querySelector('.gallery-modal-text p');
+    const closeBtn      = modal.querySelector('.gallery-modal-close');
+    const backdrop      = modal.querySelector('.gallery-modal-backdrop');
+
+    function openModal(card) {
+      const imgEl   = card.querySelector('img');
+      const titleEl = card.querySelector('h4');
+      const textEl  = card.querySelector('p');
+
+      modalImg.src = imgEl.src;
+      modalImg.alt = imgEl.alt || titleEl.textContent;
+      modalTitle.textContent = titleEl.textContent;
+      modalCaption.textContent = textEl.textContent;
+
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.preventDefault();         // stop navigation to gallery.html
+        openModal(card);
+      });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        closeModal();
+      }
+    });
+  })();
+
+
 // Game start sequence
-// Global counter you can use later
+// Global counter
 window.missionClickCount = window.missionClickCount || 0;
 
 const missionStatusEl = document.getElementById('mission-status');
@@ -200,5 +269,48 @@ if (missionStatusEl) {
   missionStatusEl.addEventListener('click', () => {
     window.missionClickCount += 1;
     console.log('Mission Status clicked:', window.missionClickCount);
+  });
+}
+
+// Game start
+window.missionClickCount = window.missionClickCount || 0;
+
+const systemStatusEl = document.querySelector('.system-status');
+const warningEl = document.getElementById('activity-warning');
+const overlayEl = document.getElementById('screen-overlay');
+
+let warningTimeoutId = null;
+
+if (systemStatusEl) {
+  systemStatusEl.addEventListener('click', () => {
+    const count = window.missionClickCount || 0;
+
+    if (count < 6) {
+      // Show warning toast
+      if (warningEl) {
+        warningEl.classList.add('visible');
+
+        // Reset auto-hide timer
+        if (warningTimeoutId) {
+          clearTimeout(warningTimeoutId);
+        }
+        warningTimeoutId = setTimeout(() => {
+          warningEl.classList.remove('visible');
+        }, 2500);
+      }
+    } else {
+      // Unlock: fade screen to black and redirect
+      if (overlayEl) {
+        overlayEl.classList.add('fade-in');
+
+        setTimeout(() => {
+          // Change this if your game lives somewhere else
+          window.location.href = 'game.html';
+        }, 1000); // match CSS transition 1s
+      } else {
+        // Fallback: just redirect
+        window.location.href = 'game.html';
+      }
+    }
   });
 }
