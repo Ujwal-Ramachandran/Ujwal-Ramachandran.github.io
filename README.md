@@ -11,7 +11,7 @@ With 3 years of experience at **Optum - UHG**, I've led automation projects, dev
 
 ## 🌐 Beyond the Resume
 
-This portfolio is more than just a list of skills—it's an interactive journey through my digital mind.
+This portfolio is more than just a list of skills, it's an interactive journey through my digital mind.
 
 While it maps out my professional evolution across Data Science and Cybersecurity, it also rewards the curious. Venture off the main path to discover a **whimsical Pixel Art World** populated by a crew of digital animals, or test your wits against a **Hidden Logic Game** concealed deep within the system.
 
