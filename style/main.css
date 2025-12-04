@@ -113,6 +113,24 @@ h1, h2, h3, h4 {
   color: var(--neon-blue);
 }
 
+/* --- Hamburger Icon Styles --- */
+.hamburger {
+  display: none; /* Hidden on desktop */
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 101; /* Above the menu overlay */
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: var(--neon-blue);
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+
 /* --- Hero Section --- */
 .hero-section {
   min-height: 90vh;
@@ -1348,25 +1366,63 @@ footer {
 
 /* --- Mobile Media Queries --- */
 @media (max-width: 768px) {
-  .nav-links { display: none; } /* Add toggle logic if needed, simple hide for now */
-  
+  /* Show hamburger */
+  .hamburger {
+      display: flex;
+  }
+
+  /* Mobile Menu Container */
+  .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%; /* Hidden off-screen by default */
+      height: 100vh;
+      width: 70%;
+      background: rgba(13, 17, 23, 0.95); /* Dark background */
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      transition: right 0.4s ease-in-out;
+      z-index: 100;
+      border-left: 1px solid rgba(88, 166, 255, 0.2);
+      box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+  }
+
+  /* Class added via JS to show menu */
+  .nav-links.active {
+      right: 0;
+  }
+
+  /* Stack grid elements (Already in your code, keeping it here) */
   .bento-grid {
-      grid-template-columns: 1fr; /* Stack everything */
-      grid-template-rows: auto;
+      grid-template-columns: 1fr;
+      grid-template-areas: 
+          "about"
+          "lang"
+          "db"
+          "ai"
+          "cyber"
+          "cloud";
   }
-  .about-card, .stack-container {
-      grid-column: 1 / -1;
-  }
-  
-  .dual-grid {
+  .dual-grid, .connect-grid {
       grid-template-columns: 1fr;
   }
-  .dual-grid::before { display: none; } /* Hide center line */
-  
-  .connect-grid {
-      grid-template-columns: 1fr;
+  .project-card, .center-card {
+      width: 100%;
   }
-  .center-card { width: 100%; }
-  
   .hero-text h1 { font-size: 2.5rem; }
+  
+  /* Animation for the Hamburger turning into 'X' */
+  .hamburger.active .bar:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active .bar:nth-child(2) {
+      opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+  }
 }

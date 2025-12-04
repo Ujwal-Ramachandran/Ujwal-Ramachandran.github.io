@@ -71,7 +71,34 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     });
   });
   
+// Nav in mobile
+/* --- Mobile Navigation Logic --- */
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+const links = document.querySelectorAll('.nav-links li');
 
+// Toggle Menu
+hamburger.addEventListener('click', () => {
+    // Toggle active classes
+    navLinks.classList.toggle('active');
+    hamburger.classList.toggle('active');
+});
+
+// Close menu when a link is clicked
+links.forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+    });
+});
+
+// Close menu when clicking outside (optional polish)
+document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+});
 /* --- 1. Matrix Code Rain Effect --- */
 const canvas = document.getElementById('matrixCanvas');
 const ctx = canvas.getContext('2d');
