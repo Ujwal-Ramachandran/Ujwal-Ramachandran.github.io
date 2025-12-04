@@ -1,66 +1,403 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ujwal Ramachandran | Gallery</title>
+    <title>Ujwal Ramachandran | Portfolio</title>
     <link rel="shortcut icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" type="text/css" href="style/gallery.css">
-    <link rel="stylesheet" type="text/css" href="style/lightbox.min.css">
-<script type="text/javascript" src="js/lightbox-plus-jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style/main.css">
 </head>
 <body>
-    <div class="container">
-        <h1>PHOTO GALLERY</h1>
-        <nav>
-            <ul>
-              <li><a href="uc.html">Home</a></li>
-              <li><a href="uc.html">About</a></li>
-              <li><a href="index.html">Gallery</a></li>
+  <canvas id="matrixCanvas"></canvas>
+  <nav class="glass-nav">
+    <div class="nav-content">
+        <div class="logo">&lt;Ujwal/&gt;</div>
+        
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#interests">Interests</a></li>
+            <li><a href="#connect">Connect</a></li>
+        </ul>
+    </div>
+</nav>
+
+  <section id="hero" class="hero-section">
+      <div class="profile-container">
+          <div class="profile-img-wrapper">
+              <img src="style\img\P2.png" alt="Ujwal Ramachandran" class="profile-img">
+              <div class="rotating-border"></div>
+          </div>
+      </div>
+      <div class="hero-text">
+          <h1 class="glitch-text" data-text="Hi there, I'm Ujwal! 👋">Hi there, I'm Ujwal! 👋</h1>
+          <h2 class="mono-text">I am a <span class="txt-type" data-wait="2000" data-words='["Data Scientist", "Cybersecurity Enthusiast", "AI Tech Innovator"]'></span></h2>
+          <p class="hero-sub">Currently pursuing Masters in Cybersecurity at NTU Singapore</p>
+          <a href="#journey" class="cta-btn"><span>Explore My Journey →</span></a>
+          
+      </div>
+  </section>
+
+  <section id="journey" class="section-padding">
+    <h2 class="section-title">
+        Mission Status:
+        <span class="neon-text status-glitch" data-text="Active" id="mission-status">
+          Active
+        </span>
+      </h2>
+    
+    <div class="bento-grid">
+        
+        <div class="bento-card area-about">
+            <h3><i class="fa-solid fa-user-astronaut"></i> About Me</h3>
+            <p>
+                With <span class="highlight">3 years of experience</span> at Optum-UHG, I've developed a deep passion for leveraging cutting-edge AI solutions to solve complex business challenges.
+            </p>
+            <p style="margin-top: 1rem;">
+                Currently pursuing my <span class="highlight">Masters in Cybersecurity at NTU Singapore</span>, I'm expanding my expertise in threat detection, security automation, and ethical hacking while maintaining my focus on AI innovation.
+            </p>
+            <p style="margin-top: 1rem;">
+                My unique blend of <span class="highlight">Data Science expertise</span> and <span class="highlight">Cybersecurity knowledge</span> positions me at the forefront of next-generation security solutions.
+            </p>
+        </div>
+
+        <div class="bento-card area-lang">
+            <h4><i class="fa-solid fa-code"></i> Languages</h4>
+            <ul class="skill-list">
+                <li class="skill-pill">Python</li>
+                <li class="skill-pill">Shell</li>
+                <li class="skill-pill">SQL</li>
+                <li class="skill-pill">C</li>
+                <li class="skill-pill">C++</li>
+                <li class="skill-pill">CSS</li>
+                <li class="skill-pill">HTML</li>
+                <li class="skill-pill">JavaScript</li>
             </ul>
-        </nav>
-        <div class="photo-gallery">
-            <a href="style/img/gallery/1.jpg" data-lightbox="my_gallery" data-title="Sunrise @ Manipal"><img src="style/img/gallery/1.jpg"></a>
-            <a href="style/img/gallery/2.jpg" data-lightbox="my_gallery" data-title="Meadows"><img src="style/img/gallery/2.jpg"></a>
-            <a href="style/img/gallery/3.jpg" data-lightbox="my_gallery" data-title="Festival of lights"><img src="style/img/gallery/3.jpg"></a>
-            <a href="style/img/gallery/4.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/4.jpg"></a>
-            <a href="style/img/gallery/5.jpg" data-lightbox="my_gallery" data-title="Ant poses for a photo"><img src="style/img/gallery/5.jpg"></a>
-            <a href="style/img/gallery/6.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/6.jpg"></a>
-            <a href="style/img/gallery/7.jpg" data-lightbox="my_gallery" data-title="Little red feather"><img src="style/img/gallery/7.jpg"></a>
-            <a href="style/img/gallery/8.jpg" data-lightbox="my_gallery" data-title="Sun setting on flowers"><img src="style/img/gallery/8.jpg"></a>
-            <a href="style/img/gallery/9.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/9.jpg"></a>
-            <a href="style/img/gallery/10.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/10.jpg"></a>
-            <a href="style/img/gallery/11.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/11.jpg"></a>
-            <a href="style/img/gallery/12.jpg" data-lightbox="my_gallery" data-title="Paper and lights - 1"><img src="style/img/gallery/12.jpg"></a>
-            <a href="style/img/gallery/13.jpg" data-lightbox="my_gallery" data-title="Paper and lights - 2"><img src="style/img/gallery/13.jpg"></a>
-            <a href="style/img/gallery/14.jpg" data-lightbox="my_gallery" data-title="Paper and lights - 3"><img src="style/img/gallery/14.jpg"></a>
-            <a href="style/img/gallery/15.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/15.jpg"></a>
-            <a href="style/img/gallery/16.jpg" data-lightbox="my_gallery" data-title="My Scaly Friend"><img src="style/img/gallery/16.jpg"></a>
-            <a href="style/img/gallery/17.jpg" data-lightbox="my_gallery" data-title="Sunset in Kochi"><img src="style/img/gallery/17.jpg"></a>
-            <a href="style/img/gallery/18.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/18.jpg"></a>
-            <a href="style/img/gallery/19.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/19.jpg"></a>
-            <a href="style/img/gallery/20.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/20.JPG"></a>
-            <a href="style/img/gallery/21.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/21.jpg"></a>
-            <a href="style/img/gallery/22.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/22.jpg"></a>
-            <a href="style/img/gallery/23.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/23.jpg"></a>
-            <a href="style/img/gallery/24.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/24.jpg"></a>
-            <a href="style/img/gallery/25.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/25.jpg"></a>
-            <a href="style/img/gallery/26.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/26.jpg"></a>
-            <a href="style/img/gallery/27.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/27.JPG"></a>
-            <a href="style/img/gallery/28.jpg" data-lightbox="my_gallery" data-title="What are you looking at?"><img src="style/img/gallery/28.JPG"></a>
-            <a href="style/img/gallery/29.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/29.jpg"></a>
-            <a href="style/img/gallery/30.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/30.jpg"></a>
-            <a href="style/img/gallery/31.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/31.jpg"></a>
-            <a href="style/img/gallery/32.jpg" data-lightbox="my_gallery" data-title="Atlas Moth - The world's biggest moth"><img src="style/img/gallery/32.jpg"></a>
-            <a href="style/img/gallery/33.jpg" data-lightbox="my_gallery" data-title="Cat taking a selfie"><img src="style/img/gallery/33.jpg"></a>
-            <a href="style/img/gallery/34.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/34.jpg"></a>
-            <a href="style/img/gallery/35.jpg" data-lightbox="my_gallery" data-title=""><img src="style/img/gallery/35.jpg"></a>
+        </div>
+
+        <div class="bento-card area-db">
+            <h4><i class="fa-solid fa-database"></i> Databases</h4>
+            <ul class="skill-list">
+                <li class="skill-pill">MongoDB</li>
+                <li class="skill-pill">Oracle DB</li>
+                <li class="skill-pill">MySQL</li>
+            </ul>
+        </div>
+
+        <div class="bento-card area-cyber">
+            <h4><i class="fa-solid fa-shield-halved"></i> Cybersecurity</h4>
+            <ul class="skill-list">
+                <li class="skill-pill">Vulnerability Assessment</li>
+                <li class="skill-pill">Ethical Hacking</li>
+            </ul>
+        </div>
+
+        <div class="bento-card area-cloud">
+            <h4><i class="fa-solid fa-cloud"></i> Cloud DevOps</h4>
+            <ul class="skill-list">
+                <li class="skill-pill">Azure</li>
+                <li class="skill-pill">Docker</li>
+                <li class="skill-pill">Jenkins</li>
+                <li class="skill-pill">Kubernetes</li>
+            </ul>
+        </div>
+
+        <div class="bento-card area-ai">
+            <h4><i class="fa-solid fa-brain"></i> AI & ML</h4>
+            <ul class="skill-list">
+                <li class="skill-pill">LLM</li>
+                <li class="skill-pill">Agentic AI</li>
+                <li class="skill-pill">Prompt Eng.</li>
+                <li class="skill-pill">MLOps</li>
+            </ul>
+        </div>
+
+    </div>
+  </section>
+
+  <section id="expertise" class="section-padding">
+    <div class="dual-header">
+        <h2>Bridging <span class="neon-text">AI Innovation</span> & <span class="neon-text">Cyber Excellence</span></h2>
+        <br>
+        <p class="dual-intro">
+            I bring a unique blend of experience at the intersection of AI/Data Science and Cybersecurity, solving real-world problems with intelligent automation, secure architectures, and performance-driven insights.
+        </p>
+        <br>
+    </div>
+
+    <div class="dual-grid">
+        <div class="expertise-col">
+            <h3 class="col-header"><i class="fa-solid fa-microchip"></i> AI & Data Science</h3>
+            
+            <div class="project-card cyber-animate" style="--delay: 0.1s">
+                <div class="card-icon"><i class="fa-solid fa-file-contract"></i></div>
+                <div class="card-content">
+                    <h4>Contract Redlining Automation</h4>
+                    <p>Led PoCs to automate contract redlining, track revisions, and generate insights using LLMs and rules-based logic.</p>
+                    <span class="impact">Reduced legal review time and improved change accuracy</span>
+                </div>
+            </div>
+
+            <div class="project-card cyber-animate" style="--delay: 0.2s">
+                <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="card-content">
+                    <h4>Confidence Scoring for KPIs</h4>
+                    <p>Created dynamic scoring metrics that adapt KPI weights based on historical and live data trends.</p>
+                    <span class="impact">Enabled smarter performance decisions and accountability</span>
+                </div>
+            </div>
+
+            <div class="project-card cyber-animate" style="--delay: 0.3s">
+                <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
+                <div class="card-content">
+                    <h4>Real-Time Bot Automation</h4>
+                    <p>Built live data pipelines that enabled bots to auto-generate orders and claims from upstream sources.</p>
+                    <span class="impact">Accelerated operations and lowered manual workload</span>
+                </div>
+            </div>
+
+            <div class="project-card cyber-animate" style="--delay: 0.4s">
+                <div class="card-icon"><i class="fa-solid fa-spider"></i></div>
+                <div class="card-content">
+                    <h4>Competitive Web Scraping</h4>
+                    <p>Designed tools to scrape multi-site product data, bypass CAPTCHAs, and deliver reports on pricing trends.</p>
+                    <span class="impact">Contributed to 10% sales growth through pricing strategy</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="expertise-col">
+            <h3 class="col-header"><i class="fa-solid fa-user-shield"></i> Cybersecurity</h3>
+
+            <div class="project-card cyber-animate" style="--delay: 0.1s">
+                <div class="card-icon"><i class="fa-solid fa-key"></i></div>
+                <div class="card-content">
+                    <h4>Passwordless Authentication</h4>
+                    <p>Implemented secure passwordless authentication systems using Keycloak and modern security protocols for enterprise applications.</p>
+                    <span class="impact">Enabled zero-trust architecture across internal apps</span>
+                </div>
+            </div>
+
+            <div class="project-card cyber-animate" style="--delay: 0.2s">
+                <div class="card-icon"><i class="fa-solid fa-shield-virus"></i></div>
+                <div class="card-content">
+                    <h4>Application Security</h4>
+                    <p>Led efforts to identify and resolve security flaws through dependency checks and exploit scanning.</p>
+                    <span class="impact">Reduced codebase vulnerabilities by 90%</span>
+                </div>
+            </div>
+
+            <div class="project-card cyber-animate" style="--delay: 0.3s">
+                <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="card-content">
+                    <h4>Secure Coding Practices</h4>
+                    <p>Audited codebases and CI/CD pipelines for secrets, weak libraries, and insecure configurations.</p>
+                    <span class="impact">Improved code quality and release readiness</span>
+                </div>
+            </div>
+
+            <div class="project-card cyber-animate" style="--delay: 0.4s">
+                <div class="card-icon"><i class="fa-solid fa-id-card"></i></div>
+                <div class="card-content">
+                    <h4>OAuth 2.0 Integration</h4>
+                    <p>Secured enterprise web apps using Spring Boot and OAuth 2.0 for seamless authorization.</p>
+                    <span class="impact">Ensured role-based access and compliance</span>
+                </div>
+            </div>
         </div>
     </div>
-    <footer>
-        <span>Shot by Ujwal Ramachandran</span>
-        <p>Copyright &copy; <script> document.write(new Date().getFullYear())</script> </p>        
-    </footer>
 
+    <div class="center-wrapper">
+        
+        <div class="project-card central-card cyber-animate" style="--delay: 0.6s">
+            <div class="card-icon highlight-icon"><i class="fa-solid fa-user-secret"></i></div>
+            <div class="card-content text-center">
+                <h4>Scam Detection Agent</h4>
+                <p>A multi-agent AI system that analyzes SMS messages and their linked websites to detect phishing and scams with layered intelligence.</p>
+                <span class="impact highlight-impact">Real-time threat identification across communication channels</span>
+            </div>
+        </div>
+
+        <div class="convergence-card cyber-animate" style="--delay: 0.8s">
+            <div class="convergence-icons">
+                <i class="fa-solid fa-microchip"></i>
+                <i class="fa-solid fa-chevron-right" style="font-size: 1rem; opacity: 0.7;"></i>
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h4>The Power of Convergence</h4>
+            <p>Where artificial intelligence meets cybersecurity, innovation thrives. My dual expertise enables me to build secure, intelligent systems that protect and perform.</p>
+        </div>
+
+    </div>
+  </section>
+
+  <section id="interests" class="section-padding hidden-section">
+    <div class="section-header">
+      <h2 class="section-title">Ask Me About</h2>
+      <p class="section-subtitle">
+        Beyond the code and algorithms, I'm passionate about exploring diverse fields
+        that fuel my curiosity and creativity.
+      </p>
+      <span class="section-underline"></span>
+    </div>
+    <div class="interests-grid">
+
+        <div class="interest-card card-blue">
+            <div class="interest-inner">
+                <div class="interest-icon">
+                <i class="fa-solid fa-robot"></i>
+                </div>
+                <h3>AI / ML</h3>
+                <p>
+                Intelligent systems, automation, and the transformative potential of
+                machine learning and LLMs.
+                </p>
+            </div>
+        </div>
+
+        <div class="interest-card card-red">
+            <div class="interest-inner">
+                <div class="interest-icon">
+                <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3>Cybersecurity</h3>
+                <p>
+                Threat analysis, defense strategies, and building resilient security
+                architectures for the digital age.
+                </p>
+            </div>
+        </div>
+
+        <div class="interest-card card-purple">
+            <div class="interest-inner">
+                <div class="interest-icon">
+                <i class="fa-solid fa-star"></i>
+                </div>
+                <h3>Astronomy</h3>
+                <p>
+                Space exploration, celestial phenomena, and the wonders of the universe
+                that spark scientific thinking.
+                </p>
+            </div>
+        </div>
+
+        <div class="interest-card card-green">
+            <div class="interest-inner">
+            <div class="interest-icon">
+                <i class="fa-solid fa-camera"></i>
+            </div>
+            <h3>Photography</h3>
+            <p>
+                Wildlife and nature photography, capturing the beauty of the world
+                through a creative lens.
+            </p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+    <section id="gallery-preview" class="section-padding hidden-section">
+        <h2 class="section-title">Visual Logs</h2>
+        <div class="gallery-grid">
+        <a href="gallery.html" class="gallery-card" style="--glow:#32ff8a;">
+            <img src="style/img/gallery/5.jpg" alt="Photo 1">
+            <div class="overlay">
+            <h4>Forest Guardian</h4>
+            <p>Red weaver ants working together on a large green leaf with detailed leaf venation visible.</p>
+            </div>
+        </a>
+
+        <a href="gallery.html" class="gallery-card" style="--glow:#ff8a3c;">
+            <img src="style/img/gallery/2.jpg" alt="Photo 2">
+            <div class="overlay">
+            <h4>Meadows</h4>
+            <p>Golden ornamental grass swaying in natural field with purple and amber hues.</p>
+            </div>
+        </a>
+
+        <a href="gallery.html" class="gallery-card" style="--glow:#ffd94a;">
+            <img src="style/img/gallery/14.jpg" alt="Photo 3">
+            <div class="overlay">
+            <h4>Yellow Candle Cluster</h4>
+            <p>Top view of a cluster of yellow-hued candle lights forming a spherical shape against a black background.</p>
+            </div>
+        </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+        <a href="uc.html" class="cta-btn secondary-btn">See Full Gallery</a>
+        </div>
+    </section>
+    <div id="gallery-modal" class="gallery-modal">
+        <div class="gallery-modal-backdrop"></div>
+        <div class="gallery-modal-inner">
+          <button class="gallery-modal-close" aria-label="Close">&times;</button>
+      
+          <div class="gallery-modal-layout">
+            <div class="gallery-modal-image-wrap">
+              <img src="" alt="">
+            </div>
+            <div class="gallery-modal-text">
+              <h3></h3>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <section id="connect" class="section-padding hidden-section">
+        <h2 class="section-title">Establish Uplink</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
+            Whether you're interested in AI innovation or just want to chat.
+        </p>
+        <p class="connect-subtitle">Let's Connect</p>
+        
+        <div class="connect-grid">
+            <a href="mailto:contactme.ujwal@gmail.com?subject=Hi,%20I'd%20like%20to%20know%20more%20about%20you&body=Hi%20Ujwal,%0A%0AI%20came%20across%20your%20profile%20and%20would%20love%20to%20learn%20more%20about%20your%20work%20and%20experiences.%20Could%20you%20please%20share%20your%20resume?%0A%0AThanks!" class="connect-card">
+                <div class="icon-circle"><i class="fa-solid fa-envelope"></i></div>
+                <span>Chat over Email</span>
+            </a>
+            
+            <a href="https://www.linkedin.com/in/ujwal-ramachandran-28b753199/" target="_blank" class="connect-card">
+                <div class="icon-circle"><i class="fa-brands fa-linkedin-in"></i></div>
+                <span>My LinkedIn Profile</span>
+            </a>
+            
+            <a href="https://github.com/Ujwal-Ramachandran" target="_blank" class="connect-card center-card">
+                <div class="icon-circle"><i class="fa-brands fa-github"></i></div>
+                <span>My GitHub</span>
+            </a>
+        </div>
+    </section>
+    <footer>
+        <p>
+          &copy; <script>document.write(new Date().getFullYear())</script>
+          Ujwal Ramachandran.
+          <span class="system-status" data-text="System Online.">System Online.</span>
+        </p>
+    </footer>
+    <!-- Activity warning toast -->
+    <div id="activity-warning" class="system-warning">
+    <span class="system-warning-label">Warning</span>
+    <span class="system-warning-text">You are not Active enough.</span>
+    </div>
+    
+    <!-- Fullscreen fade overlay for redirect -->
+    <div id="screen-overlay"></div>
+      
+    <script src="js/style.js"></script>
 </body>
 </html>

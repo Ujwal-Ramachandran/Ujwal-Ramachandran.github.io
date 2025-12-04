@@ -1,41 +1,315 @@
-body{
-    text-align: center; 
-    padding: 150px; 
-    font: 20px Helvetica, sans-serif;
-    color: black;
-}
-h1{
-    font-size: 50px;
+/* ==================== RESET & CORE ==================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #050510;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    color: #00ff9f;
 }
 
-article{
-    display: block;
-    text-align: left;
-    width: 650px;
-    margin: 0 auto;
-}
-
-a{
-    color: #dc8100;
-    text-decoration: none;
-}
-
-a:hover{
-    color: #333;
-    text-decoration: none;
-}
-
-footer{
+/* ==================== BACKGROUND IMAGE ==================== */
+.site-background {
     position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Updates to use your specific image */
+    background: url('Animal BG.png') no-repeat center center; 
+    background-size: cover;
+    z-index: 0;
+    filter: brightness(0.6) contrast(1.2); /* Darken slightly for Cyberpunk feel */
 }
 
-footer p{
-    float: right;
-    margin-bottom: 5px;
-    margin-right: 15px;
-    font-size: 15px;
+.glitch-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(rgba(0,0,0,0) 0, rgba(0,0,0,0) 2px, rgba(0, 255, 159, 0.03) 3px, rgba(0,0,0,0) 4px);
+    pointer-events: none;
+    z-index: 100;
 }
+
+/* ==================== TEXT ==================== */
+.headline {
+    position: absolute;
+    top: 5%; width: 100%;
+    text-align: center;
+    z-index: 20;
+}
+
+.glitch {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-weight: bold;
+    text-shadow: 2px 2px #ff00ff;
+    background: rgba(0,0,0,0.5); /* Legibility backing */
+    display: inline-block;
+    padding: 10px;
+}
+
+/* ==================== ANIMAL MOVEMENTS ==================== */
+/* --- General Defaults --- */
+.crew-member { position: absolute; z-index: 10; }
+.crew-member img { 
+    width: clamp(60px, 8vw, 100px); 
+    height: auto; 
+    image-rendering: pixelated; 
+}
+
+/* --- Specific Sizes --- */
+.crew-member.dog img {
+    width: 60px;   /* Kept your adjustment */
+    height: auto;
+}
+.crew-member.gorilla img {
+    width: 200px;
+    height: auto;
+}
+.crew-member.elephant img {
+    width: 280px;
+    height: auto;
+}
+
+/* --- Delays (New: Use these to stagger arrival times) --- */
+.delay-1 { animation-delay: 1s; }
+.delay-2 { animation-delay: 2.5s; }
+.delay-3 { animation-delay: 4s; }
+
+/* --- 1. Left Walkers (Dog & Gorilla) --- */
+.enter-left { 
+    bottom: 10%; 
+    left: -250px; 
+}
+
+/* Dog uses standard animation - Loop 6s */
+.enter-left.fast-walker { 
+    animation: walk-left-small 6s linear infinite; 
+}
+
+/* Gorilla uses "Big" animation - Loop 9s */
+.enter-left.heavy-walker { 
+    animation: walk-left-big 9s linear infinite; 
+}
+
+/* Animation for SMALL animals (Walks for 75% of loop) */
+@keyframes walk-left-small {
+    0%   { left: -150px; opacity: 1; }
+    75%  { left: 41%; opacity: 1; }      /* Changed from 45% to 75% */
+    80%  { left: 44%; opacity: 0; transform: scale(0.8); }
+    100% { left: 44%; opacity: 0; }
+}
+
+/* Animation for BIG animals (Walks for 75% of loop) */
+@keyframes walk-left-big {
+    0%   { left: -250px; opacity: 1; }
+    75%  { left: 35%; opacity: 1; }      /* Changed from 45% to 75% */
+    80%  { left: 38%; opacity: 0; transform: scale(0.8); }
+    100% { left: 38%; opacity: 0; }
+}
+
+
+/* --- 2. Right Walkers (Elephant & Dog 2) --- */
+.enter-right { 
+    bottom: 15%; 
+    right: -250px; 
+    transform: scaleX(-1); 
+} 
+
+/* ADJUSTMENT: Elephant lower */
+.crew-member.elephant {
+    bottom: 10%; /* Kept your specific adjustment */
+}
+
+/* Dog 2 uses standard animation - Loop 7s */
+.enter-right.fast-walker { 
+    animation: walk-right-small 7s linear infinite; 
+}
+
+/* Elephant uses "Big" animation - Loop 10s */
+.enter-right.heavy-walker { 
+    animation: walk-right-big 10s linear infinite; 
+}
+
+/* Animation for SMALL animals (Walks for 75% of loop) */
+@keyframes walk-right-small {
+    0%   { right: -150px; opacity: 1; transform: scaleX(-1); }
+    75%  { right: 38%; opacity: 1; transform: scaleX(-1); } /* Changed from 45% to 75% */
+    80%  { right: 43%; opacity: 0; transform: scaleX(-1) scale(0.8); }
+    100% { right: 43%; opacity: 0; }
+}
+
+/* Animation for BIG animals (Walks for 75% of loop) */
+@keyframes walk-right-big {
+    0%   { right: -250px; opacity: 1; transform: scaleX(-1); }
+    75%  { right: 32%; opacity: 1; transform: scaleX(-1); } /* Changed from 45% to 75% */
+    80%  { right: 35%; opacity: 0; transform: scaleX(-1) scale(0.8); }
+    100% { right: 35%; opacity: 0; }
+}
+
+/* --- 3. Squirrel (Vertical Climber) --- */
+.squirrel-climber {
+    left: 38%; /* Aligned with a vertical beam in background */
+    bottom: 20%;
+}
+.squirrel-climber img {
+    animation: climb-up-down 6s ease-in-out infinite;
+}
+
+@keyframes climb-up-down {
+    0% { transform: translateY(0); }
+    45% { transform: translateY(-300px); } /* Go up building */
+    55% { transform: translateY(-300px) scaleX(-1); } /* Turn around at top */
+    95% { transform: translateY(0) scaleX(-1); } /* Come down */
+    100% { transform: translateY(0) scaleX(1); } /* Reset */
+}
+
+/* --- 4. Owl (Flying Around) --- */
+/* "Stationed on crane" = starting high up */
+.owl-flyer {
+    top: 15%; left: 50%;
+    transform: translateX(-50%);
+}
+.owl-flyer img {
+    width: 120px;
+    animation: fly-around-building 10s linear infinite;
+}
+
+@keyframes fly-around-building {
+    0% { transform: translate(0, 0) scale(1); z-index: 20; }
+    25% { transform: translate(300px, 50px) scale(0.8); z-index: 5; } /* Fly behind/right */
+    50% { transform: translate(0, 100px) scale(0.6); z-index: 5; } /* Fly behind/low */
+    75% { transform: translate(-300px, 50px) scale(0.8); z-index: 20; } /* Fly front/left */
+    100% { transform: translate(0, 0) scale(1); z-index: 20; }
+}
+
+/* Delays */
+.delay-1 { animation-delay: 2s !important; }
+.delay-2 { animation-delay: 4s !important; }
+.delay-3 { animation-delay: 1s !important; }
+
+/* --- Positioning Containers --- */
+.painter-left { bottom: 35%; left: 35%; z-index: 15; }
+.painter-right { bottom: 45%; right: 35%; z-index: 15; }
+
+/* --- The Static Animals --- */
+.painter-left img {
+    width: 70px;
+    animation: hammer-left 0.6s infinite alternate ease-in-out;
+}
+
+.painter-right img {
+    width: 70px;
+    transform: scaleX(-1); /* Flip right dog */
+    animation: hammer-right 0.6s infinite alternate ease-in-out;
+}
+
+/* --- Keyframes for the Hammering Motion --- */
+@keyframes hammer-left {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-10deg); /* Swings back and forth */
+    }
+}
+
+@keyframes hammer-right {
+    0% {
+        transform: scaleX(-1) rotate(0deg); /* Keep it flipped */
+    }
+    100% {
+        transform: scaleX(-1) rotate(-10deg); /* Swings back and forth mirrored */
+    }
+}
+
+/* ==================== RED PANDA (THE STAR) ==================== */
+.red-panda-stage {
+    position: fixed;
+    bottom: 85px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    /* z-index: 50;  */
+    pointer-events: none; 
+}
+
+#panda-actor {
+    /* INCREASED SIZE HERE */
+    width: clamp(350px, 45vw, 600px); 
+    filter: drop-shadow(0 0 15px rgba(0,0,0,0.8));
+    transition: transform 0.2s;
+}
+
+.shake-anim { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.pixel-bubble {
+    background: #fff;
+    color: #000;
+    /* INCREASED SIZE HERE */
+    padding: 25px; 
+    font-size: 1.2rem; /* Larger text */
+    max-width: 450px;  /* Wider box */
+    margin-bottom: 20px;
+    margin-left: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    position: relative;
+    border: 4px solid #000;
+    /* Create stepped pixel corners using box-shadow */
+    box-shadow: 
+        -4px 0 0 0 #000, 
+        4px 0 0 0 #000, 
+        0 -4px 0 0 #000, 
+        0 4px 0 0 #000,
+        8px 8px 0 rgba(255, 0, 255, 0.5); /* Neon shadow drop */
+    image-rendering: pixelated;
+}
+
+/* The little triangle pointer for the bubble */
+.pixel-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #000;
+}
+
+.pixel-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-top: 11px solid #fff;
+    z-index: 1;
+}
+
+/* ==================== BUTTON ==================== */
+.cyber-btn {
+    position: fixed; bottom: 50px; left: 50px; padding: 15px 30px;
+    background: rgba(0,0,0,0.8); border: 2px solid #00ff9f; color: #00ff9f;
+    text-decoration: none; font-weight: bold; text-transform: uppercase; z-index: 100;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    transition: all 0.3s;
+}
+.cyber-btn:hover { background: #00ff9f; color: #000; box-shadow: 0 0 20px #00ff9f; }
+
+/* ==================== PARTICLES ==================== */
+#particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; }
+.particle { position: absolute; width: 3px; height: 3px; background: #fff; pointer-events: none; }

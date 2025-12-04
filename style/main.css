@@ -1,17 +1,1428 @@
-body{
-    background-color: black;
-    margin: 0px;
-    padding: 0px;
+/* --- Variables & Reset --- */
+:root {
+  --bg-dark: #0d1117;
+  --bg-panel: #161b22;
+  --neon-blue: #58a6ff;
+  --text-main: #f0f6fc;
+  --text-muted: #8b949e;
+  
+  /* Specific Colors for Interest Cards */
+  --color-purple: #a371f7;
+  --color-green: #3fb950;
+  --color-red: #f85149;
+  
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
-ul{
-    list-style: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-a{
-    text-decoration: none;
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
-a:visited{
-    color: white;
+/* --- Global Matrix Canvas --- */
+#matrixCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.15; /* Subtle background */
+}
+
+/* --- Typography Helpers --- */
+h1, h2, h3, h4 {
+  font-weight: 700;
+}
+
+.mono-text {
+  font-family: var(--font-mono);
+  color: var(--neon-blue);
+}
+
+.neon-text {
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
+}
+
+.section-padding {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  border-left: 5px solid var(--neon-blue);
+  padding-left: 1rem;
+}
+
+/* --- Navigation --- */
+.glass-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 17, 23, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(88, 166, 255, 0.2);
+  padding: 1rem 0;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--neon-blue);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--neon-blue);
+}
+
+/* --- Hamburger Icon Styles --- */
+.hamburger {
+  display: none; /* Hidden on desktop */
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 101; /* Above the menu overlay */
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: var(--neon-blue);
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.profile-img-wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 2rem;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--bg-panel);
+  z-index: 2;
+  position: relative;
+}
+
+.rotating-border {
+  position: absolute;
+  top: -10px; left: -10px; right: -10px; bottom: -10px;
+  border-radius: 50%;
+  border: 2px dashed var(--neon-blue);
+  animation: rotate 10s linear infinite;
+  z-index: 1;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hero-text h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  cursor: default;
+}
+
+/* Simple CSS Glitch on Hover */
+.glitch-text:hover {
+  animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+  color: var(--neon-blue);
+}
+
+@keyframes glitch-anim {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.hero-sub {
+  color: var(--text-muted);
+  margin: 1rem 0 2rem;
+}
+
+.cta-btn {
+  position: relative;
+  display: inline-block;
+  padding: 10px 25px;
+  background: transparent;
+  border: 1px solid var(--neon-blue);
+  color: var(--neon-blue);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Text / arrow wrapper for slight slide */
+.cta-btn span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* Light sweep / sheen */
+.cta-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(88, 166, 255, 0.25) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+/* Hover state */
+.cta-btn:hover {
+  background: rgba(88, 166, 255, 0.06);
+  box-shadow: 0 0 12px rgba(88, 166, 255, 0.5);
+  transform: translateY(-2px);
+  border-color: var(--neon-blue);
+}
+
+/* Run the sheen animation only on hover */
+.cta-btn:hover::before {
+  animation: cta-sheen 0.7s ease-out;
+}
+
+/* Nudge text slightly right on hover */
+.cta-btn:hover span {
+  transform: translateX(4px);
+}
+
+/* Sheen keyframes */
+@keyframes cta-sheen {
+  from {
+    left: -120%;
+  }
+  to {
+    left: 120%;
+  }
+}
+
+
+/* Glitchy "Active" inside Mission Status */
+.status-glitch {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Layers for glitch effect */
+.status-glitch::before,
+.status-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Left cyan slice */
+.status-glitch::before {
+  color: #4cc9ff;
+  transform: translateX(-2px);
+}
+
+/* Right magenta slice */
+.status-glitch::after {
+  color: #ff4cff;
+  transform: translateX(2px);
+}
+
+/* Hover – trigger glitch */
+.status-glitch:hover {
+  animation: status-glitch-main 400ms infinite;
+}
+
+.status-glitch:hover::before,
+.status-glitch:hover::after {
+  opacity: 1;
+  animation: status-glitch-slices 400ms infinite;
+}
+
+/* Main word subtle horizontal jitter */
+@keyframes status-glitch-main {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(1px); }
+  40%  { transform: translateX(-1px); }
+  60%  { transform: translateX(2px); }
+  80%  { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+/* Horizontal sliced glitch for pseudo elements */
+@keyframes status-glitch-slices {
+  0% {
+    clip-path: inset(0 0 80% 0);
+    transform: translateX(-2px);
+  }
+  20% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translateX(3px);
+  }
+  40% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translateX(-3px);
+  }
+  60% {
+    clip-path: inset(60% 0 20% 0);
+    transform: translateX(2px);
+  }
+  80% {
+    clip-path: inset(80% 0 0 0);
+    transform: translateX(-2px);
+  }
+  100% {
+    clip-path: inset(0 0 80% 0);
+    transform: translateX(0);
+  }
+}
+
+/* --- SECTION 3: Bento Grid (Responsive) --- */
+.bento-grid {
+  display: grid;
+  /* 3 Equal Columns */
+  grid-template-columns: 1fr 1fr 1fr;
+  /* 3 Rows: Auto height */
+  grid-template-rows: auto auto auto; 
+  gap: 1.5rem;
+  
+  /* THE LAYOUT MAP:
+     "about" spans 2 cols wide, 2 rows high.
+     "lang" and "db" stack on the right.
+     The bottom row is split 3 ways: cyber, cloud, ai.
+  */
+  grid-template-areas: 
+      "about about lang"
+      "about about db"
+      "cyber cloud ai";
+}
+
+/* Card Styling */
+.bento-card {
+  background: var(--bg-panel);
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  
+  /* Animation Setup */
+  opacity: 0; /* Hidden by default for fade-in */
+  animation: fadeInUp 0.6s ease-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+}
+
+/* Staggered Entrance Animation */
+.bento-card:nth-child(1) { animation-delay: 0.1s; }
+.bento-card:nth-child(2) { animation-delay: 0.2s; }
+.bento-card:nth-child(3) { animation-delay: 0.3s; }
+.bento-card:nth-child(4) { animation-delay: 0.4s; }
+.bento-card:nth-child(5) { animation-delay: 0.5s; }
+.bento-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Interactive Hover Effects */
+.bento-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--neon-blue);
+  /* Cyberpunk Glow */
+  box-shadow: 0 10px 30px -10px rgba(88, 166, 255, 0.3);
+}
+
+.bento-card:hover h4 i, 
+.bento-card:hover h3 i {
+  color: var(--neon-blue);
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+/* Assigning Grid Areas */
+.area-about { grid-area: about; }
+.area-lang  { grid-area: lang; }
+.area-db    { grid-area: db; }
+.area-cyber { grid-area: cyber; }
+.area-cloud { grid-area: cloud; }
+.area-ai    { grid-area: ai; }
+
+/* Content Styling */
+.bento-card h3, .bento-card h4 {
+  margin-bottom: 1rem;
+  color: var(--text-main);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bento-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.highlight {
+  color: var(--neon-blue);
+  font-weight: 500;
+}
+
+/* Skill Pills */
+.skill-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.skill-pill {
+  background: rgba(22, 27, 34, 0.8);
+  border: 1px solid rgba(88, 166, 255, 0.2);
+  color: var(--text-main);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  cursor: default;
+  transition: all 0.2s;
+}
+
+.skill-pill:hover {
+  background: rgba(88, 166, 255, 0.15);
+  border-color: var(--neon-blue);
+  color: var(--neon-blue);
+  transform: scale(1.05);
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+  .bento-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      /* Stack everything vertically on mobile */
+      grid-template-areas: 
+          "about"
+          "lang"
+          "db"
+          "ai"
+          "cyber"
+          "cloud";
+  }
+  
+  /* Reset delays for mobile so they don't wait too long */
+  .bento-card { animation-delay: 0s !important; }
+}
+
+/* --- SECTION 4: Dual Expertise Styling --- */
+.dual-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.dual-header h2 {
+  text-align: center;
+  width: 100%;
+  font-size: 2.0rem;
+}
+
+.col-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: var(--neon-blue);
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.col-header i {
+  color: whitesmoke;
+  margin-right: 1.25rem;
+  font-size: 1.4rem;
+}
+
+/* Intro Text */
+.dual-intro {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Grid Layout */
+.dual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  color: var(--neon-blue);
+}
+
+/* Card Styling */
+.project-card {
+  background: var(--bg-panel);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(88, 166, 255, 0.1);
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--neon-blue);
+  box-shadow: 0 5px 20px rgba(88, 166, 255, 0.15);
+  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(255,255,255,0.05) 100%);
+}
+
+/* FORCE BLUE STYLING — Base Icons */
+.card-icon {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  background: rgba(88, 166, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: whitesmoke;
+  transition: all 0.3s ease;
+}
+
+.card-content {
+  flex-grow: 1;
+}
+
+.project-card h4 {
+  color: var(--neon-blue);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.project-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+.impact {
+  display: block;
+  color: var(--neon-blue);
+  font-style: italic;
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  transition: all 0.3s ease;
+}
+
+/* --- COLOR FLIP ON HOVER (applies to all cards) --- */
+.project-card:hover h4,
+.central-card:hover h4,
+.convergence-card:hover h4,
+.project-card:hover .impact,
+.central-card:hover .impact {
+  color: #ffffff;
+}
+
+.project-card:hover .card-icon,
+.central-card:hover .card-icon {
+  background: rgba(255,255,255,0.12);
+  color: var(--neon-blue);
+}
+
+/* --- CENTERED SECTION STYLING --- */
+.center-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Scam Agent Card */
+.central-card {
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid rgba(88,166,255,0.3);
+  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(88,166,255,0.05) 100%);
+  transition: all 0.3s ease;
+}
+
+.highlight-icon {
+  width: 60px;
+  height: 60px;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  background: rgba(88,166,255,0.15);
+}
+
+.highlight-impact {
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Power of Convergence */
+.convergence-card {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(88,166,255,0.05) 100%);
+  border: 1px solid rgba(88,166,255,0.2);
+  border-radius: 12px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.convergence-card h4 {
+  color: var(--neon-blue);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.convergence-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: whitesmoke;
+}
+
+.convergence-icons i {
+  transition: transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Power of Convergence Hover Effects */
+.convergence-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--neon-blue);
+  box-shadow: 0 5px 20px rgba(88,166,255,0.15);
+  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(255,255,255,0.05) 100%);
+}
+
+.convergence-card:hover .convergence-icons i {
+  color: var(--neon-blue);
+}
+
+/* Icons slide closer */
+.convergence-card:hover .convergence-icons i:first-child {
+  transform: translateX(8px);
+}
+
+.convergence-card:hover .convergence-icons i:last-child {
+  transform: translateX(-8px);
+}
+
+/* Chevron subtle emphasis */
+.convergence-card:hover .convergence-icons i:nth-child(2) {
+  transform: scale(1.15);
+  opacity: 1;
+}
+
+/* Animation */
+.cyber-animate {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+  .dual-grid {
+    grid-template-columns: 1fr;
+  }
+  .project-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .card-icon {
+    margin-bottom: 1rem;
+  }
+}
+
+
+/* --- SECTION 5: Interests Grid --- */
+/* ---- Interests header (right aligned) ---- */
+#interests {
+  text-align: right;
+}
+
+#interests .section-header {
+  max-width: 700px;
+  margin-left: auto;
+  margin-bottom: 2.5rem;
+  text-align: right;
+}
+
+/* Title with ONLY a right blue line */
+#interests .section-title {
+  position: relative;
+  display: inline-block;
+  padding-right: 1.2rem;   /* space before right line */
+  padding-left: 0;         /* kill any left padding from global rules */
+  border-left: none !important;   /* kill any left border */
+}
+
+#interests .section-title::before {
+  content: none !important;       /* kill any global ::before line */
+}
+
+#interests .section-title::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;        /* slightly thicker for emphasis */
+  height: 60px;      /* ← MATCHES the original tall left line */
+  background: var(--neon-blue);
+  border-radius: 4px;
+}
+
+/* Subtitle */
+#interests .section-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 0.75rem;
+}
+
+/* Blue underline under subtitle (aligned right) */
+#interests .section-underline {
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--neon-blue);
+  border-radius: 999px;
+  margin: 1.5rem 0 0 auto;
+}
+
+
+/* ---- Interests grid ---- */
+.interests-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2rem;
+}
+
+.interest-card {
+  position: relative;
+  text-align: center;
+  background: transparent;
+  border-radius: 20px;
+  padding: 1px;                     /* for outer subtle border */
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.interest-inner {
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.03), transparent 60%);
+  border-radius: 18px;
+  padding: 2.2rem 2rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+/* Icon circle */
+.interest-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.4rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.interest-icon i {
+  font-size: 2rem;
+  color: #fff;
+}
+
+/* Title & text */
+.interest-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.interest-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Hover effects */
+.interest-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.7);
+}
+
+/* Accent bar at bottom on hover */
+.interest-card::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  width: 60px;
+  height: 3px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+/* ---- Color variants ---- */
+.card-purple .interest-icon {
+  background: radial-gradient(circle at 30% 20%, #c084fc, #6d28d9);
+}
+
+.card-green .interest-icon {
+  background: radial-gradient(circle at 30% 20%, #4ade80, #16a34a);
+}
+
+.card-red .interest-icon {
+  background: radial-gradient(circle at 30% 20%, #fb7185, #ef4444);
+}
+
+.card-blue .interest-icon {
+  background: radial-gradient(circle at 30% 20%, #60a5fa, #2563eb);
+}
+
+/* Purple */
+.card-purple:hover {
+  border-color: var(--color-purple);
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(163,113,247,0.15),
+    transparent 90%
+  );
+}
+
+/* Green */
+.card-green:hover {
+  border-color: var(--color-green);
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(63,185,80,0.15),
+    transparent 90%
+  );
+}
+
+/* Red */
+.card-red:hover {
+  border-color: var(--color-red);
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(248,81,73,0.15),
+    transparent 90%
+  );
+}
+
+/* Blue */
+.card-blue:hover {
+  border-color: var(--neon-blue);
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(88,166,255,0.15),
+    transparent 90%
+  );
+}
+
+
+.card-purple:hover::after { background: var(--color-purple); }
+.card-green:hover::after  { background: var(--color-green); }
+.card-red:hover::after    { background: var(--color-red); }
+.card-blue:hover::after   { background: var(--neon-blue); }
+
+
+/* --- SECTION 6: Gallery Preview --- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.gallery-card {
+  position: relative;
+  display: block;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  transform: translateY(0) scale(1);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    filter 0.4s ease;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* Hover effect: enlarge + glow */
+.gallery-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 0 25px var(--glow, rgba(0, 200, 255, 0.55));
+  filter: brightness(1.03);
+}
+
+.gallery-card:hover img {
+  transform: scale(1.08);
+}
+
+.gallery-card .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  padding: 1.5rem;
+  color: white;
+}
+
+.gallery-card h4 { margin-bottom: 0.2rem; }
+.gallery-card p { font-size: 0.8rem; opacity: 0.8; }
+
+/* --- Gallery modal --- */
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  display: none;           /* hidden by default */
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.gallery-modal.open {
+  display: flex;
+}
+
+.gallery-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(0, 200, 255, 0.25), transparent),
+              rgba(0,0,0,0.85);
+  backdrop-filter: blur(6px);
+}
+
+.gallery-modal-inner {
+  position: relative;
+  max-width: 900px;
+  width: min(90vw, 900px);
+  border-radius: 18px;
+  padding: 2rem;
+  background: radial-gradient(circle at top, rgba(0, 200, 255, 0.18), transparent),
+              rgba(10,12,20,0.98);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.gallery-modal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .gallery-modal-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gallery-modal-image-wrap {
+  border-radius: 16px;
+  overflow: hidden;
+  max-height: 500px;
+}
+
+.gallery-modal-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-modal-text h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.gallery-modal-text p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Close button */
+.gallery-modal-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.9rem;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1.7rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem 0.4rem;
+  border-radius: 999px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-modal-close:hover {
+  background: rgba(255,255,255,0.12);
+  transform: scale(1.05);
+}
+
+.cta-btn.secondary-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+/* moving silver diagonal line */
+.cta-btn.secondary-btn::after {
+  content: "";
+  position: absolute;
+  top: -120%;
+  left: -40%;
+  width: 40%;
+  height: 340%;
+  background: linear-gradient(120deg,
+              transparent,
+              rgba(255, 255, 255, 0.85),
+              transparent);
+  transform: translateX(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cta-btn.secondary-btn:hover::after,
+.cta-btn.secondary-btn:focus-visible::after {
+  opacity: 1;
+  animation: button-silver-swipe 0.75s ease-out forwards;
+}
+
+@keyframes button-silver-swipe {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(260%);
+  }
+}
+
+
+/* --- SECTION 7: Connect Grid --- */
+.connect-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.connect-subtitle {
+  text-align: center;
+  font-size: 1.4rem;               /* Slightly bigger */
+  color: var(--neon-blue);         /* Blue */
+  margin-top: -1rem;               /* Pull it closer to previous line */
+  margin-bottom: 2rem;             /* Space above the cards */
+  font-weight: 600;
+}
+
+.connect-card {
+  background: var(--bg-panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;      /* Center icon + text horizontally */
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text-main);
+  border: 1px solid transparent;
+  transition: 0.3s;
+  text-align: center;           /* Center the text itself */
+}
+
+.connect-card span {
+  transition: color 0.3s;       /* Smooth text color change on hover */
+}
+
+.center-card {
+  grid-column: 1 / -1;          /* Span full width */
+  width: 60%;
+  margin: 0 auto;
+}
+
+.icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neon-blue);      /* Icon starts blue */
+  transition: color 0.3s, background 0.3s;
+}
+
+/* Hover state: lift card, change colors */
+.connect-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--neon-blue);
+  background: #1c2128;
+}
+
+.connect-card:hover span {
+  color: var(--neon-blue);      /* Text turns blue */
+}
+
+.connect-card:hover .icon-circle {
+  color: #ffffff;               /* Icon turns white */
+  background: rgba(0,0,0,0.4);  /* Optional: slightly darker circle */
+}
+
+/* Optional: better on mobile */
+@media (max-width: 768px) {
+  .connect-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .center-card {
+    width: 100%;
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Base "System Online." look – subtle blue glow */
+.system-status {
+  position: relative;
+  color: var(--neon-blue);
+  text-shadow: 0 0 6px rgba(0, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+/* Glitch layers (hidden until hover) */
+.system-status::before,
+.system-status::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Cyan layer */
+.system-status::before {
+  color: #00ffff;
+  transform: translate(1px, 0);
+}
+
+/* Magenta layer */
+.system-status::after {
+  color: #ff00ff;
+  transform: translate(-1px, 0);
+}
+
+/* Hover: start glitching */
+.system-status:hover::before,
+.system-status:hover::after {
+  opacity: 1;
+  animation: glitch 450ms infinite;
+}
+
+.system-status:hover {
+  animation: glitch-base 450ms infinite;
+}
+
+/* Base text tiny jitter */
+@keyframes glitch-base {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(0.5px, -0.5px); }
+  40%  { transform: translate(-0.5px, 0.5px); }
+  60%  { transform: translate(0.5px, 0.5px); }
+  80%  { transform: translate(-0.5px, -0.5px); }
+  100% { transform: translate(0); }
+}
+
+/* Glitch keyframes for pseudo-elements */
+@keyframes glitch {
+  0% {
+    clip-path: inset(0 0 80% 0);
+    transform: translate(-1px, -1px);
+  }
+  20% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    clip-path: inset(60% 0 20% 0);
+    transform: translate(1px, 1px);
+  }
+  80% {
+    clip-path: inset(80% 0 0 0);
+    transform: translate(-1px, 1px);
+  }
+  100% {
+    clip-path: inset(0 0 80% 0);
+    transform: translate(0, 0);
+  }
+}
+
+/* --- Footer warning + overlay --- */
+
+/* Warning pill */
+.system-warning {
+  position: fixed;
+  bottom: 80px; /* sits above the footer */
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(13, 17, 23, 0.95); /* matches bg-dark aesthetic */
+  border: 1px solid rgba(248, 81, 73, 0.7); /* subtle alert red */
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-main);
+  box-shadow: 0 0 18px rgba(248, 81, 73, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 200;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Small label badge */
+.system-warning-label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(248, 81, 73, 0.15);
+  border: 1px solid rgba(248, 81, 73, 0.6);
+  color: #ffb4b4;
+}
+
+/* Visible state */
+.system-warning.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Fade-to-black overlay */
+#screen-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 999; /* above everything */
+  transition: opacity 1s ease;
+}
+
+/* When active, fade in */
+#screen-overlay.fade-in {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* --- Utilities --- */
+.hidden-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.visible-section {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Mobile Media Queries --- */
+@media (max-width: 768px) {
+  /* Show hamburger */
+  .hamburger {
+      display: flex;
+  }
+
+  /* Mobile Menu Container */
+  .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%; /* Hidden off-screen by default */
+      height: 100vh;
+      width: 70%;
+      background: rgba(13, 17, 23, 0.95); /* Dark background */
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      transition: right 0.4s ease-in-out;
+      z-index: 100;
+      border-left: 1px solid rgba(88, 166, 255, 0.2);
+      box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+  }
+
+  /* Class added via JS to show menu */
+  .nav-links.active {
+      right: 0;
+  }
+
+  /* Stack grid elements (Already in your code, keeping it here) */
+  .bento-grid {
+      grid-template-columns: 1fr;
+      grid-template-areas: 
+          "about"
+          "lang"
+          "db"
+          "ai"
+          "cyber"
+          "cloud";
+  }
+  .dual-grid, .connect-grid {
+      grid-template-columns: 1fr;
+  }
+  .project-card, .center-card {
+      width: 100%;
+  }
+  .hero-text h1 { font-size: 2.5rem; }
+  
+  /* Animation for the Hamburger turning into 'X' */
+  .hamburger.active .bar:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active .bar:nth-child(2) {
+      opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+  }
 }

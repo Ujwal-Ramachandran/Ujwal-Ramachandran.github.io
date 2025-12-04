@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0d1117;
+    overflow: hidden; /* Prevent scrolling */
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Back Button Positioning */
+#back-to-home {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    text-decoration: none;
+    font-weight: bold;
+    background: rgba(13, 17, 23, 0.8);
+    backdrop-filter: blur(4px);
+}
+
+/* Game Container */
+#neural-game-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+#neural-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#neural-ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* HUD */
+.hud-panel {
+    position: absolute;
+    padding: 20px;
+    color: #58a6ff;
+    text-shadow: 0 0 5px #58a6ff;
+    pointer-events: auto;
+    background: rgba(13, 17, 23, 0.5);
+    border-radius: 0 0 10px 0;
+}
+.top-left { top: 0; left: 0; }
+
+/* Menus */
+.terminal-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid #58a6ff;
+    padding: 40px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(88, 166, 255, 0.2);
+    pointer-events: auto;
+    min-width: 320px;
+}
+
+/* Cyber Buttons */
+.cyber-btn {
+    background: transparent;
+    border: 1px solid #3fb950;
+    color: #3fb950;
+    padding: 10px 20px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.cyber-btn:hover {
+    background: #3fb950;
+    color: #000;
+    box-shadow: 0 0 15px #3fb950;
+}
+
+.cyber-btn.warning {
+    border-color: #f85149;
+    color: #f85149;
+}
+
+.cyber-btn.warning:hover {
+    background: #f85149;
+    color: #000;
+    box-shadow: 0 0 15px #f85149;
+}
