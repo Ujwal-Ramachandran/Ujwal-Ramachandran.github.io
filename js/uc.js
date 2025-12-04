@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Gomen nasai! 🙇<br>My crew is working hard to compile this section!",
         "I promise it will be worth the wait!<br>Please don't be mad! 🥺",
         "Just a few more pixels...<br>We are building as fast as we can! 🏗️",
-        "System upgrade in progress...<br>Sorry for the mess! 💦"
+        "System upgrade in progress...<br>Sorry for the mess!!! 🔧",
     ];
 
     let msgIndex = 0;
