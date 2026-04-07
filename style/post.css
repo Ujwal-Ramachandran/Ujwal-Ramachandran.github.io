@@ -406,17 +406,88 @@
     margin: 2rem 0;
 }
 
-/* --- Screenshot placeholders (until real images added) --- */
-.markdown-body p:has(> img) {
-    text-align: center;
+/* --- Images --- */
+.markdown-body img {
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(88, 166, 255, 0.2);
+    margin: 0.5rem auto 0;
+    cursor: zoom-in;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.markdown-body img {
-    max-width: 100%;
-    border-radius: 8px;
-    border: 1px solid rgba(88, 166, 255, 0.15);
-    margin: 0.5rem 0;
+.markdown-body img:hover {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 24px rgba(88, 166, 255, 0.2);
 }
+
+/* Caption from alt text */
+.img-caption {
+    display: block;
+    text-align: center;
+    font-size: 0.78rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    margin-bottom: 1.75rem;
+    opacity: 0.7;
+}
+
+/* --- Image Lightbox --- */
+#img-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(6px);
+    cursor: zoom-out;
+}
+
+#img-lightbox.open {
+    display: flex;
+}
+
+#img-lightbox img {
+    max-width: 92vw;
+    max-height: 90vh;
+    border-radius: 10px;
+    border: 1px solid rgba(88, 166, 255, 0.3);
+    box-shadow: 0 0 60px rgba(88, 166, 255, 0.15);
+    object-fit: contain;
+    cursor: default;
+}
+
+#lightbox-caption {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 600px;
+}
+
+#lightbox-close {
+    position: fixed;
+    top: 1rem;
+    right: 1.25rem;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+#lightbox-close:hover { opacity: 1; }
 
 /* --- Comments --- */
 .comments-section {
