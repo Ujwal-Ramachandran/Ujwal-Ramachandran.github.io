@@ -159,6 +159,15 @@ async function loadPost() {
     const contentEl = document.getElementById('post-content');
     contentEl.innerHTML = marked.parse(mdText);
 
+    // Fix image paths — resolve relative to the markdown file's directory
+    const baseDir = meta.file.substring(0, meta.file.lastIndexOf('/') + 1);
+    contentEl.querySelectorAll('img').forEach(img => {
+        const src = img.getAttribute('src');
+        if (src && !src.startsWith('http') && !src.startsWith('/')) {
+            img.src = baseDir + src.replace(/^\.\//, '');
+        }
+    });
+
     // Syntax highlighting on all code blocks
     contentEl.querySelectorAll('pre code').forEach(el => {
         hljs.highlightElement(el);
