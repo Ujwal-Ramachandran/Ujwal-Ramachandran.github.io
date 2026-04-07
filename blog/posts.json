@@ -1,0 +1,14 @@
+[
+  {
+    "id": "ANF",
+    "title": "Agentic Network Forensics: Automated PCAP Analysis at Scale",
+    "subtitle": "A Multi-Engine, LLM-Augmented Pipeline for Large-Scale Network Threat Investigation",
+    "date": "April 2026",
+    "readTime": "15 min",
+    "tags": ["Cybersecurity", "Network Forensics", "AI/ML", "CTF", "Python"],
+    "excerpt": "Modern network forensic investigations face a scaling problem: packet captures from real incidents routinely span gigabytes across dozens of files, with millions of packets that no analyst can manually review in a reasonable timeframe.",
+    "coverIcon": "fa-network-wired",
+    "file": "blog/ANF/Agentic_Network_Forensics.md",
+    "github": "https://github.com/Ujwal-Ramachandran/Agentic-Network-Forensics"
+  }
+]

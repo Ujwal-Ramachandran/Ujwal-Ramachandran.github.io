@@ -1,0 +1,461 @@
+/* --- Logo link fix --- */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- Nav active state --- */
+.nav-active {
+    color: var(--neon-blue) !important;
+}
+
+/* --- Reading Progress Bar --- */
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--neon-blue);
+    box-shadow: 0 0 10px rgba(88, 166, 255, 0.7);
+    z-index: 1001;
+    transition: width 0.1s linear;
+}
+
+/* --- Post Layout: ToC sidebar + main --- */
+.post-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 2rem 2rem 6rem;
+    gap: 3rem;
+    align-items: start;
+}
+
+/* --- ToC Sidebar --- */
+.toc-sidebar {
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+    background: var(--bg-panel);
+    border: 1px solid rgba(88, 166, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.25rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(88, 166, 255, 0.2) transparent;
+}
+
+.toc-header {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(88, 166, 255, 0.1);
+}
+
+#toc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+#toc a {
+    display: block;
+    font-size: 0.79rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    border-left: 2px solid transparent;
+    line-height: 1.45;
+    transition: all 0.2s ease;
+}
+
+#toc a:hover,
+#toc a.active {
+    color: var(--neon-blue);
+    border-left-color: var(--neon-blue);
+    background: rgba(88, 166, 255, 0.06);
+}
+
+#toc a.toc-h3 {
+    padding-left: 1.4rem;
+    font-size: 0.74rem;
+    opacity: 0.85;
+}
+
+/* --- Post Main --- */
+.post-main {
+    min-width: 0;
+}
+
+/* --- Breadcrumb --- */
+.post-breadcrumb {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.post-breadcrumb a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.post-breadcrumb a:hover { opacity: 0.7; }
+
+/* --- CSS Cover --- */
+.post-cover {
+    width: 100%;
+    height: 300px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0d1117 0%, #08112b 55%, #050e1f 100%);
+}
+
+.post-cover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(88, 166, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(88, 166, 255, 0.07) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+/* Radial glow behind icon */
+.post-cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(88, 166, 255, 0.08) 0%, transparent 70%);
+}
+
+.cover-icon {
+    font-size: 5.5rem;
+    color: var(--neon-blue);
+    position: relative;
+    z-index: 1;
+    opacity: 0.82;
+    filter: drop-shadow(0 0 32px rgba(88, 166, 255, 0.6));
+}
+
+/* --- Post Header --- */
+.post-header {
+    margin-bottom: 2rem;
+}
+
+.post-header h1 {
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+    color: var(--text-main);
+}
+
+.post-subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+}
+
+/* Terminal-style metadata line */
+.post-terminal-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.2rem;
+    font-size: 0.82rem;
+    color: var(--neon-blue);
+    margin-bottom: 1.25rem;
+    padding: 0.6rem 0.9rem;
+    background: rgba(88, 166, 255, 0.04);
+    border: 1px solid rgba(88, 166, 255, 0.1);
+    border-radius: 6px;
+    width: fit-content;
+}
+
+.post-terminal-meta a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(88, 166, 255, 0.45);
+}
+
+.post-terminal-meta a:hover { opacity: 0.75; }
+
+/* Tags row */
+.post-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Action buttons (GitHub, Share) */
+.post-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 6px 14px;
+    border: 1px solid rgba(88, 166, 255, 0.25);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+    background: rgba(88, 166, 255, 0.06);
+}
+
+/* --- Divider --- */
+.post-divider {
+    border: none;
+    border-top: 1px solid rgba(240, 246, 252, 0.07);
+    margin: 2.5rem 0;
+}
+
+/* --- Markdown Body --- */
+.markdown-body {
+    color: var(--text-main);
+    line-height: 1.85;
+    font-size: 1rem;
+}
+
+/* Hide the duplicate h1 from the MD file */
+.markdown-body > h1:first-child { display: none; }
+
+.markdown-body h2 {
+    font-size: 1.55rem;
+    margin: 2.75rem 0 1rem;
+    padding-left: 1rem;
+    border-left: 4px solid var(--neon-blue);
+    color: var(--text-main);
+    line-height: 1.35;
+}
+
+.markdown-body h3 {
+    font-size: 1.15rem;
+    margin: 2rem 0 0.75rem;
+    color: var(--neon-blue);
+}
+
+.markdown-body h4 {
+    font-size: 0.95rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-family: var(--font-mono);
+}
+
+.markdown-body p {
+    margin-bottom: 1.25rem;
+    color: var(--text-muted);
+}
+
+.markdown-body strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.markdown-body em {
+    color: var(--neon-blue);
+    font-style: italic;
+}
+
+.markdown-body a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(88, 166, 255, 0.3);
+    transition: border-color 0.2s, opacity 0.2s;
+}
+
+.markdown-body a:hover {
+    border-bottom-color: var(--neon-blue);
+    opacity: 0.85;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+    margin: 0 0 1.25rem 1.6rem;
+    color: var(--text-muted);
+}
+
+.markdown-body li { margin-bottom: 0.45rem; }
+
+.markdown-body blockquote {
+    border-left: 3px solid var(--neon-blue);
+    margin: 1.75rem 0;
+    padding: 0.85rem 1.4rem;
+    background: rgba(88, 166, 255, 0.04);
+    border-radius: 0 8px 8px 0;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* --- Tables --- */
+.markdown-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.75rem 0;
+    font-size: 0.88rem;
+    display: block;
+    overflow-x: auto;
+}
+
+.markdown-body th {
+    background: rgba(88, 166, 255, 0.09);
+    color: var(--neon-blue);
+    padding: 10px 14px;
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(88, 166, 255, 0.2);
+    white-space: nowrap;
+}
+
+.markdown-body td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(240, 246, 252, 0.05);
+    color: var(--text-muted);
+}
+
+.markdown-body tr:hover td {
+    background: rgba(88, 166, 255, 0.03);
+}
+
+/* --- Code blocks --- */
+.markdown-body pre {
+    position: relative;
+    margin: 1.75rem 0;
+    border-radius: 10px;
+    border: 1px solid rgba(88, 166, 255, 0.12);
+    overflow: hidden;
+}
+
+.markdown-body pre code {
+    display: block;
+    padding: 1.25rem;
+    font-size: 0.84rem;
+    line-height: 1.65;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+}
+
+.markdown-body code:not(pre code) {
+    background: rgba(88, 166, 255, 0.09);
+    border: 1px solid rgba(88, 166, 255, 0.15);
+    color: var(--neon-blue);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.84em;
+    font-family: var(--font-mono);
+}
+
+/* Copy button on code blocks */
+.copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 3px 10px;
+    background: rgba(13, 17, 23, 0.8);
+    border: 1px solid rgba(88, 166, 255, 0.2);
+    border-radius: 4px;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 1;
+}
+
+.copy-btn:hover {
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+}
+
+/* Horizontal rule in markdown */
+.markdown-body hr {
+    border: none;
+    border-top: 1px solid rgba(240, 246, 252, 0.07);
+    margin: 2rem 0;
+}
+
+/* --- Screenshot placeholders (until real images added) --- */
+.markdown-body p:has(> img) {
+    text-align: center;
+}
+
+.markdown-body img {
+    max-width: 100%;
+    border-radius: 8px;
+    border: 1px solid rgba(88, 166, 255, 0.15);
+    margin: 0.5rem 0;
+}
+
+/* --- Comments --- */
+.comments-section {
+    margin-top: 1rem;
+}
+
+.comments-section h3 {
+    font-size: 1rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Back to blog --- */
+.back-to-blog {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+/* --- Mobile --- */
+@media (max-width: 960px) {
+    .post-layout {
+        grid-template-columns: 1fr;
+        padding: 1.5rem 1.25rem 4rem;
+        gap: 0;
+    }
+
+    .toc-sidebar {
+        position: static;
+        max-height: none;
+        margin-bottom: 2rem;
+    }
+
+    .post-header h1 { font-size: 1.65rem; }
+    .post-cover { height: 200px; }
+    .cover-icon { font-size: 4rem; }
+}
+
+@media (max-width: 480px) {
+    .post-terminal-meta { font-size: 0.75rem; }
+    .markdown-body h2 { font-size: 1.3rem; }
+}
