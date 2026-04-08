@@ -69,7 +69,7 @@ skills = {
 ## 📫 Let's Connect\!
 
   - 📧 Email: [contactme.ujwal@gmail.com](mailto:contactme.ujwal@gmail.com?subject=Hi,%20I'd%20like%20to%20know%20more%20about%20you&body=Hi%20Ujwal,%0A%0AI%20came%20across%20your%20profile%20and%20would%20love%20to%20learn%20more%20about%20your%20work%20and%20experiences.%20Could%20you%20please%20share%20your%20resume?%0A%0AThanks!)
-  - 💼 LinkedIn: [Ujwal Ramachandran](https://www.linkedin.com/in/ujwal-ramachandran-28b753199/)
+  - 💼 LinkedIn: [Ujwal Ramachandran](https://www.linkedin.com/in/ujwal-ramachandran/)
 
 ## 📊 GitHub Stats
 
