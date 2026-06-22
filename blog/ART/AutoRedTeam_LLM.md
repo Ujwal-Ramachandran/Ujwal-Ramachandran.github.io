@@ -76,6 +76,8 @@ The pipeline looks like this:
 
 Adding a new model is literally one line in `config.py`. The pipeline downloads it, quantizes it, runs all 150 prompts, classifies every response, re-runs under three defense conditions, and adds it to the dashboard automatically.
 
+![Security Overview dashboard — 450 total evaluations, 81% overall ASR, with Attack Success Rate heatmap by model and category. Qwen 2.5 7B leads at 94% jailbreak ASR; Llama 3.1 8B is the strongest at 42% prompt injection ASR.](./Overview.png)
+
 ---
 
 ## Core Design Pattern: One Single Config File
@@ -185,6 +187,8 @@ The jailbreak keyword list includes `reverse shell`, `mimikatz`, `shellcode`, `l
 
 The lazy loading is intentional: most Stage 1 calls resolve without the embedding model, so the 80MB transformer isn't pulled into memory on runs where it's not needed.
 
+![Classifier Validation dashboard — 64% accuracy and κ = 0.31 across 45 gold-reviewed samples. The confusion matrix shows strong VULNERABLE recall but near-zero PARTIAL precision. Rule-based stage achieves 79% agreement vs 37.5% for the embedding fallback.](./Classifier.png)
+
 ---
 
 ## Component 4: Defense Module (`defense_module.py`)
@@ -204,6 +208,8 @@ DRR = (baseline_asr - defended_asr) / baseline_asr
 ```
 
 A DRR of 0.20 means the defense cut the attack success rate by 20%. Negative DRR means the defense made things worse.
+
+![Defense Analysis dashboard — DRR heatmap by model and defense strategy. Hardened system prompts consistently outperform input sanitization. Mistral 7B's input sanitization DRR of -1% flags as an anomaly: the defense slightly worsened attack success rate.](./Defense%20Analysis.png)
 
 ---
 
@@ -282,6 +288,8 @@ Mistral 7B-Instruct-v0.3 was vulnerable on 92% of all prompts across categories 
 > *"Mistral 7B / Jailbreak — Input Sanitization raised ASR from 92% → 93% (+1%). Input sanitization may have altered prompt phrasing in a way that confused the model."*
 
 The likely mechanism: stripping injection keywords from crescendo prompts (which build context gradually) disrupted the model's understanding of the conversation, producing responses that were misclassified as VULNERABLE by the classifier's code-block heuristic.
+
+![Model Deep Dive dashboard (Llama 3.1 8B) — 63% overall ASR with jailbreak technique effectiveness breakdown. Many-shot and crescendo techniques lead; encoding-based obfuscation shows the lowest success rate. The severity chart shows high-severity attacks dominate successful exploits.](./Model%20Analysis.png)
 
 ---
 
