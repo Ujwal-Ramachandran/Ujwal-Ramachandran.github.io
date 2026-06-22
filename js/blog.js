@@ -69,33 +69,87 @@ document.addEventListener('click', (e) => {
     }
 });
 
-/* --- Card click navigates to post --- */
-document.querySelectorAll('.post-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-        const link = card.querySelector('.post-read-link');
-        if (link && !e.target.closest('.post-read-link')) {
-            window.location.href = link.href;
-        }
+/* --- Dynamic Blog Loader --- */
+async function loadBlog() {
+    const grid = document.getElementById('posts-grid');
+    const filterBar = document.getElementById('tag-filter-bar');
+    const noPostsEl = document.getElementById('no-posts');
+
+    let posts;
+    try {
+        const res = await fetch('blog/posts.json');
+        posts = await res.json();
+    } catch (e) {
+        grid.innerHTML = '<p style="color:var(--text-muted);text-align:center;">Failed to load posts.</p>';
+        return;
+    }
+
+    // Build tag filter buttons from all unique tags across posts
+    const allTags = new Set();
+    posts.forEach(p => p.tags.forEach(t => allTags.add(t)));
+
+    allTags.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.className = 'tag-filter-btn';
+        btn.dataset.tag = tag;
+        btn.textContent = tag;
+        filterBar.appendChild(btn);
     });
-});
 
-/* --- Tag Filtering --- */
-document.querySelectorAll('.tag-filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.tag-filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    // Render post cards
+    grid.innerHTML = posts.map(post => {
+        const tagsAttr = post.tags.join('|');
+        const tagsHtml = post.tags.map(t => `<span class="skill-pill">${t}</span>`).join('');
+        return `
+            <div class="post-card" data-tags="${tagsAttr}">
+                <div class="post-card-cover">
+                    <i class="fa-solid ${post.coverIcon} cover-icon-large"></i>
+                </div>
+                <div class="post-card-body">
+                    <div class="post-card-meta">
+                        <span><i class="fa-regular fa-calendar"></i>${post.date}</span>
+                        <span><i class="fa-regular fa-clock"></i>${post.readTime} read</span>
+                    </div>
+                    <h2 class="post-card-title">${post.title}</h2>
+                    <p class="post-card-excerpt">${post.excerpt}</p>
+                    <div class="post-card-tags">${tagsHtml}</div>
+                </div>
+                <div class="post-card-footer">
+                    <a href="post.html?post=${post.id}" class="post-read-link">Read Post &rarr;</a>
+                </div>
+            </div>
+        `;
+    }).join('');
 
-        const tag = btn.dataset.tag;
-        const cards = document.querySelectorAll('.post-card');
-        let visible = 0;
-
-        cards.forEach(card => {
-            const cardTags = card.dataset.tags;
-            const show = tag === 'all' || cardTags.includes(tag);
-            card.style.display = show ? '' : 'none';
-            if (show) visible++;
+    // Card click navigates to post
+    grid.querySelectorAll('.post-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            const link = card.querySelector('.post-read-link');
+            if (link && !e.target.closest('.post-read-link')) {
+                window.location.href = link.href;
+            }
         });
-
-        document.getElementById('no-posts').style.display = visible === 0 ? 'block' : 'none';
     });
-});
+
+    // Tag filtering
+    filterBar.querySelectorAll('.tag-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBar.querySelectorAll('.tag-filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const tag = btn.dataset.tag;
+            const cards = grid.querySelectorAll('.post-card');
+            let visible = 0;
+
+            cards.forEach(card => {
+                const show = tag === 'all' || card.dataset.tags.includes(tag);
+                card.style.display = show ? '' : 'none';
+                if (show) visible++;
+            });
+
+            noPostsEl.style.display = visible === 0 ? 'block' : 'none';
+        });
+    });
+}
+
+loadBlog();

@@ -45,93 +45,12 @@
     </section>
 
     <div class="blog-container">
-        <div class="tag-filter-bar">
+        <div class="tag-filter-bar" id="tag-filter-bar">
             <button class="tag-filter-btn active" data-tag="all">All</button>
-            <button class="tag-filter-btn" data-tag="Cybersecurity">Cybersecurity</button>
-            <button class="tag-filter-btn" data-tag="AI/ML">AI/ML</button>
-            <button class="tag-filter-btn" data-tag="Red Teaming">Red Teaming</button>
-            <button class="tag-filter-btn" data-tag="Adversarial ML">Adversarial ML</button>
-            <button class="tag-filter-btn" data-tag="Multi-Agent">Multi-Agent</button>
-            <button class="tag-filter-btn" data-tag="Phishing">Phishing</button>
-            <button class="tag-filter-btn" data-tag="Network Forensics">Network Forensics</button>
-            <button class="tag-filter-btn" data-tag="CTF">CTF</button>
-            <button class="tag-filter-btn" data-tag="Python">Python</button>
         </div>
 
         <div class="posts-grid" id="posts-grid">
-
-            <div class="post-card" data-tags="Cybersecurity|AI/ML|Red Teaming|Adversarial ML|Python">
-                <div class="post-card-cover">
-                    <i class="fa-solid fa-terminal cover-icon-large"></i>
-                </div>
-                <div class="post-card-body">
-                    <div class="post-card-meta">
-                        <span><i class="fa-regular fa-calendar"></i>June 2026</span>
-                        <span><i class="fa-regular fa-clock"></i>18 min read</span>
-                    </div>
-                    <h2 class="post-card-title">AutoRedTeam-LLM: Building an Automated Security Benchmark for Open-Source LLMs</h2>
-                    <p class="post-card-excerpt">A fully local red-teaming pipeline that attacks, scores, and defends three 7–8B models on an RTX 4060 — 150 adversarial prompts, 3 defenses, zero human annotation, recording an overall 81.1% ASR across 450 evaluations.</p>
-                    <div class="post-card-tags">
-                        <span class="skill-pill">Cybersecurity</span>
-                        <span class="skill-pill">AI/ML</span>
-                        <span class="skill-pill">Red Teaming</span>
-                        <span class="skill-pill">Adversarial ML</span>
-                        <span class="skill-pill">Python</span>
-                    </div>
-                </div>
-                <div class="post-card-footer">
-                    <a href="post.html?post=ART" class="post-read-link">Read Post &rarr;</a>
-                </div>
-            </div>
-
-            <div class="post-card" data-tags="Cybersecurity|AI/ML|Multi-Agent|Phishing|Python">
-                <div class="post-card-cover">
-                    <i class="fa-solid fa-user-secret cover-icon-large"></i>
-                </div>
-                <div class="post-card-body">
-                    <div class="post-card-meta">
-                        <span><i class="fa-regular fa-calendar"></i>November 2025</span>
-                        <span><i class="fa-regular fa-clock"></i>12 min read</span>
-                    </div>
-                    <h2 class="post-card-title">SMS Phishing Detection with Multi-Agent AI: Building a Personal Anti-Scam Analyst</h2>
-                    <p class="post-card-excerpt">What if the judgment didn't have to be human? A multi-agent AI system that analyses a suspicious SMS from every angle simultaneously — message text, URL structure, website content, HTTP headers, and domain registration history.</p>
-                    <div class="post-card-tags">
-                        <span class="skill-pill">Cybersecurity</span>
-                        <span class="skill-pill">AI/ML</span>
-                        <span class="skill-pill">Multi-Agent</span>
-                        <span class="skill-pill">Phishing</span>
-                        <span class="skill-pill">Python</span>
-                    </div>
-                </div>
-                <div class="post-card-footer">
-                    <a href="post.html?post=SDA" class="post-read-link">Read Post &rarr;</a>
-                </div>
-            </div>
-
-            <div class="post-card" data-tags="Cybersecurity|Network Forensics|AI/ML|CTF|Python">
-                <div class="post-card-cover">
-                    <i class="fa-solid fa-network-wired cover-icon-large"></i>
-                </div>
-                <div class="post-card-body">
-                    <div class="post-card-meta">
-                        <span><i class="fa-regular fa-calendar"></i>April 2026</span>
-                        <span><i class="fa-regular fa-clock"></i>15 min read</span>
-                    </div>
-                    <h2 class="post-card-title">Agentic Network Forensics: Automated PCAP Analysis at Scale</h2>
-                    <p class="post-card-excerpt">Modern network forensic investigations face a scaling problem: packet captures from real incidents routinely span gigabytes across dozens of files, with millions of packets that no analyst can manually review in a reasonable timeframe.</p>
-                    <div class="post-card-tags">
-                        <span class="skill-pill">Cybersecurity</span>
-                        <span class="skill-pill">Network Forensics</span>
-                        <span class="skill-pill">AI/ML</span>
-                        <span class="skill-pill">CTF</span>
-                        <span class="skill-pill">Python</span>
-                    </div>
-                </div>
-                <div class="post-card-footer">
-                    <a href="post.html?post=ANF" class="post-read-link">Read Post &rarr;</a>
-                </div>
-            </div>
-
+            <!-- Populated dynamically from blog/posts.json -->
         </div>
 
         <div id="no-posts" class="no-posts" style="display:none;">
