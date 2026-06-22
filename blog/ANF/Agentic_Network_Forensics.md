@@ -153,7 +153,7 @@ All findings are read from SQLite and used to construct a directed NetworkX grap
 
 The graph makes lateral movement and attacker infrastructure immediately visible - paths from the initial attacker IP through intermediate pivot points to victim hosts become visual rather than rows in a database.
 
-![Attack Graph — Red: Attacker, Orange: C2 Node, Blue: Victim. Edge width proportional to finding count.](./Attackgraph.png)
+![Attack Graph, Red: Attacker, Orange: C2 Node, Blue: Victim. Edge width proportional to finding count.](./Attackgraph.png)
 
 ### 2.7 Stage 6 - HTML Report (`pipeline/reporter.py` + `templates/report.html.j2`)
 
@@ -183,7 +183,7 @@ response = ollama.chat(
 
 ![Executive Summary and Key Statistics from the HTML forensic report](./Key_stats.png)
 
-![Finding Distribution Over Time — Plotly interactive timeline from the HTML report](./Attacktime-1.png)
+![Finding Distribution Over Time, Plotly interactive timeline from the HTML report](./Attacktime-1.png)
 
 ### 2.8 Stage 7 - RAG Q&A Interface (`pipeline/rag.py`)
 
@@ -197,7 +197,7 @@ python main.py --chat "Summarize the attack timeline"
 
 This means an analyst who was not involved in running the pipeline can explore findings conversationally, without needing to understand the underlying schema or write SQL queries.
 
-![RAG Q&A Interface — natural language queries over the findings database](./RAG_output.png)
+![RAG Q&A Interface, natural language queries over the findings database](./RAG_output.png)
 
 ### 2.9 Data Flow: SQLite vs DuckDB
 
@@ -343,7 +343,7 @@ The attack graph visualised the full attacker infrastructure:
 - **Botnet coordinator:** `10.31.4.152`
 - **13 confirmed attacker IPs** with distinct roles (initial access, lateral movement, exfiltration staging)
 
-![Attack Graph — hub-and-spoke C2 infrastructure centred on primary attacker nodes](./Attackgraph.png)
+![Attack Graph, hub-and-spoke C2 infrastructure centred on primary attacker nodes](./Attackgraph.png)
 
 ### 4.8 Stage 6 Result: Forensic Report
 
@@ -355,7 +355,7 @@ The HTML report rendered the complete investigation narrative. LLM-authored sect
 
 All factual claims in the report (IPs, ports, byte counts, timestamps) were sourced from `findings.db` and `analytics.duckdb` - the LLM synthesised prose, never invented facts.
 
-![Attack Narrative Timeline — chronological attack phases from exploitation through exfiltration](./Attacktimeline-2.png)
+![Attack Narrative Timeline, chronological attack phases from exploitation through exfiltration](./Attacktimeline-2.png)
 
 ### 4.9 Stage 7 Result: Q&A Interface
 

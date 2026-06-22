@@ -2,11 +2,11 @@
   {
     "id": "ART",
     "title": "AutoRedTeam-LLM: Building an Automated Security Benchmark for Open-Source LLMs",
-    "subtitle": "How I built a fully local red-teaming pipeline that attacks, scores, and defends three 7–8B models on an RTX 4060 — no API keys, no cloud compute, no manual annotation.",
+    "subtitle": "How I built a fully local red-teaming pipeline that attacks, scores, and defends three 7–8B models on an RTX 4060,no API keys, no cloud compute, no manual annotation.",
     "date": "June 2026",
     "readTime": "18 min",
     "tags": ["Cybersecurity", "AI/ML", "Red Teaming", "Adversarial ML", "Python"],
-    "excerpt": "Open-source LLMs are deployed in production without systematic safety evaluation. I built AutoRedTeam-LLM to automate the attack-classify-defend loop end to end — 150 adversarial prompts, 3 models, 3 defenses, zero human annotation, recording an overall 81.1% ASR across 450 evaluations.",
+    "excerpt": "Open-source LLMs are deployed in production without systematic safety evaluation. I built AutoRedTeam-LLM to automate the attack-classify-defend loop end to end,150 adversarial prompts, 3 models, 3 defenses, zero human annotation, recording an overall 81.1% ASR across 450 evaluations.",
     "coverIcon": "fa-terminal",
     "file": "blog/ART/AutoRedTeam_LLM.md",
     "github": "https://github.com/Ujwal-Ramachandran/AutoRedTeam_LLM_Pipelines"
