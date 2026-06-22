@@ -10,5 +10,17 @@
     "coverIcon": "fa-network-wired",
     "file": "blog/ANF/Agentic_Network_Forensics.md",
     "github": "https://github.com/Ujwal-Ramachandran/Agentic-Network-Forensics"
+  },
+  {
+    "id": "SDA",
+    "title": "SMS Phishing Detection with Multi-Agent AI: Building a Personal Anti-Scam Analyst",
+    "subtitle": "How a Pipeline of Specialized Agents Tears Apart a Phishing SMS, From Message Text to Website Metadata",
+    "date": "November 2025",
+    "readTime": "12 min",
+    "tags": ["Cybersecurity", "AI/ML", "Multi-Agent", "Phishing", "Python"],
+    "excerpt": "What if the judgment didn't have to be human? A multi-agent AI system that analyses a suspicious SMS from every angle simultaneously, message text, URL structure, website content, HTTP headers, and domain registration history, each handled by its own specialised agent.",
+    "coverIcon": "fa-user-secret",
+    "file": "blog/SDA/Scam_Detection_Agent.md",
+    "github": "https://github.com/Ujwal-Ramachandran/Scam-Detection-Agent"
   }
 ]

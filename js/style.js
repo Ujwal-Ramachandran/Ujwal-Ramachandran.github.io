@@ -237,6 +237,22 @@ document.querySelectorAll('.hidden-section').forEach(section => {
     observer.observe(section);
 });
 
+/* --- 3b. Timeline Item Staggered Reveal --- */
+const tlObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.classList.add('tl-visible');
+            }, 80);
+            tlObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.tl-hidden').forEach(item => {
+    tlObserver.observe(item);
+});
+
 
   (function() {
     const cards = document.querySelectorAll('.gallery-card');
