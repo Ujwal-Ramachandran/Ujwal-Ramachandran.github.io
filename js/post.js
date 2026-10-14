@@ -168,6 +168,20 @@ async function loadPost() {
         }
     });
 
+    // Same for videos: <source src>, <video poster>, and download fallback links
+    const resolveAttr = (el, attr) => {
+        const val = el.getAttribute(attr);
+        if (val && !val.startsWith('http') && !val.startsWith('/') && !val.startsWith('#')) {
+            el.setAttribute(attr, baseDir + val.replace(/^\.\//, ''));
+        }
+    };
+    contentEl.querySelectorAll('video').forEach(v => {
+        resolveAttr(v, 'poster');
+        v.querySelectorAll('source').forEach(src => resolveAttr(src, 'src'));
+        v.querySelectorAll('a').forEach(a => resolveAttr(a, 'href'));
+        v.load();
+    });
+
     // Syntax highlighting on all code blocks
     contentEl.querySelectorAll('pre code').forEach(el => {
         hljs.highlightElement(el);

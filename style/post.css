@@ -530,3 +530,65 @@
     .post-terminal-meta { font-size: 0.75rem; }
     .markdown-body h2 { font-size: 1.3rem; }
 }
+
+
+/* --- Embedded demo videos --- */
+.post-video {
+    margin: 1.5rem 0 2rem;
+}
+
+.post-video video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid rgba(88, 166, 255, 0.2);
+    background: #000;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-video video:hover {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 24px rgba(88, 166, 255, 0.2);
+}
+
+.post-video figcaption {
+    display: block;
+    text-align: center;
+    font-size: 0.78rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+    opacity: 0.7;
+}
+
+/* --- Key numbers strip --- */
+.key-numbers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 1rem;
+}
+
+.key-number {
+    padding: 1rem 1.1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(88, 166, 255, 0.2);
+    background: rgba(88, 166, 255, 0.05);
+}
+
+.key-number-value {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--neon-blue);
+    line-height: 1.1;
+}
+
+.key-number-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.35rem;
+}

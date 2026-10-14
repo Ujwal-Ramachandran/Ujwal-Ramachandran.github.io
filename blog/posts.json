@@ -1,11 +1,35 @@
 [
   {
+    "id": "GIT",
+    "title": "Ghost in the Template: Watching a Chat-Template Backdoor Fire, Live",
+    "subtitle": "Two demos from my OASec 2026 talk. A poisoned GGUF chat template makes a clean model lie on a trigger phrase, then the same trick hijacks a tool-using agent into making a network request.",
+    "date": "September 2026",
+    "readTime": "9 min",
+    "tags": [
+      "Cybersecurity",
+      "AI/ML",
+      "AI Supply Chain",
+      "LLM Security",
+      "Adversarial ML"
+    ],
+    "excerpt": "You can backdoor a local LLM without touching a single weight. The chat template bundled inside a GGUF file is executable Jinja2 that runs on every prompt, and almost nobody inspects it. Two demos from my OASec 2026 talk show the attack firing, plus TempLock, the open-source integrity gate that fails closed when the template drifts.",
+    "coverIcon": "fa-ghost",
+    "file": "blog/GIT/Ghost_in_the_Template.md",
+    "github": "https://github.com/Ujwal-Ramachandran/TempLock"
+  },
+  {
     "id": "ART",
     "title": "AutoRedTeam-LLM: Building an Automated Security Benchmark for Open-Source LLMs",
     "subtitle": "How I built a fully local red-teaming pipeline that attacks, scores, and defends three 7–8B models on an RTX 4060,no API keys, no cloud compute, no manual annotation.",
     "date": "June 2026",
     "readTime": "18 min",
-    "tags": ["Cybersecurity", "AI/ML", "Red Teaming", "Adversarial ML", "Python"],
+    "tags": [
+      "Cybersecurity",
+      "AI/ML",
+      "Red Teaming",
+      "Adversarial ML",
+      "Python"
+    ],
     "excerpt": "Open-source LLMs are deployed in production without systematic safety evaluation. I built AutoRedTeam-LLM to automate the attack-classify-defend loop end to end,150 adversarial prompts, 3 models, 3 defenses, zero human annotation, recording an overall 81.1% ASR across 450 evaluations.",
     "coverIcon": "fa-terminal",
     "file": "blog/ART/AutoRedTeam_LLM.md",
@@ -17,7 +41,13 @@
     "subtitle": "A Multi-Engine, LLM-Augmented Pipeline for Large-Scale Network Threat Investigation",
     "date": "April 2026",
     "readTime": "15 min",
-    "tags": ["Cybersecurity", "Network Forensics", "AI/ML", "CTF", "Python"],
+    "tags": [
+      "Cybersecurity",
+      "Network Forensics",
+      "AI/ML",
+      "CTF",
+      "Python"
+    ],
     "excerpt": "Modern network forensic investigations face a scaling problem: packet captures from real incidents routinely span gigabytes across dozens of files, with millions of packets that no analyst can manually review in a reasonable timeframe.",
     "coverIcon": "fa-network-wired",
     "file": "blog/ANF/Agentic_Network_Forensics.md",
@@ -29,7 +59,13 @@
     "subtitle": "How a Pipeline of Specialized Agents Tears Apart a Phishing SMS, From Message Text to Website Metadata",
     "date": "November 2025",
     "readTime": "12 min",
-    "tags": ["Cybersecurity", "AI/ML", "Multi-Agent", "Phishing", "Python"],
+    "tags": [
+      "Cybersecurity",
+      "AI/ML",
+      "Multi-Agent",
+      "Phishing",
+      "Python"
+    ],
     "excerpt": "What if the judgment didn't have to be human? A multi-agent AI system that analyses a suspicious SMS from every angle simultaneously, message text, URL structure, website content, HTTP headers, and domain registration history, each handled by its own specialised agent.",
     "coverIcon": "fa-user-secret",
     "file": "blog/SDA/Scam_Detection_Agent.md",

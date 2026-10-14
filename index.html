@@ -54,7 +54,7 @@
       </div>
       <div class="hero-text">
           <h1 class="glitch-text" data-text="Hi there, I'm Ujwal! 👋">Hi there, I'm Ujwal! 👋</h1>
-          <h2 class="mono-text">I am a <span class="txt-type" data-wait="2000" data-words='["AI/ML Engineer", "Data Scientist", "AI Security Researcher", "Foundation Model Engineer"]'></span></h2>
+          <h2 class="mono-text">I am a <span class="txt-type" data-wait="2000" data-words='["AI/ML Engineer", "Data Scientist", "AI Security Researcher", "Foundation Model Engineer", "Conference Speaker"]'></span></h2>
           <p class="hero-sub">Currently pursuing Masters in Cybersecurity at NTU Singapore</p>
           <a href="#journey" class="cta-btn"><span>Explore My Journey →</span></a>
           
@@ -77,7 +77,7 @@
                 With <span class="highlight">3 years of experience</span> at Optum-UHG, I've built and shipped production AI systems — from LLM-powered automation pipelines to computer vision models that drive measurable business impact.
             </p>
             <p style="margin-top: 1rem;">
-                Currently pursuing my <span class="highlight">Masters in Cybersecurity at NTU Singapore</span>, I'm specialising in <span class="highlight">adversarial ML and AI security research</span> — red-teaming LLMs, building multi-agent systems, and engineering intelligent defences.
+                Currently pursuing my <span class="highlight">Masters in Cybersecurity at NTU Singapore</span>, I'm specialising in <span class="highlight">adversarial ML and AI security research</span> — red-teaming LLMs, building multi-agent systems, and engineering intelligent defences. My AI supply-chain research, <span class="highlight">Ghost in the Template</span>, was presented on the main stage at <span class="highlight">OASec 2026 Singapore</span>.
             </p>
             <p style="margin-top: 1rem;">
                 My focus sits at the intersection of <span class="highlight">AI/ML engineering</span> and <span class="highlight">AI security research</span> — building systems that are not just intelligent, but adversarially robust.
@@ -276,7 +276,27 @@
 
     <div class="feat-projects-grid">
 
-        <div class="feat-project-card cyber-animate" style="--delay: 1.1s">
+        <div class="feat-project-card cyber-animate" id="work-ghost-in-the-template" style="--delay: 1.1s">
+            <div class="feat-project-top">
+                <div class="card-icon"><i class="fa-solid fa-ghost"></i></div>
+                <span class="feat-date">Sept 2026</span>
+            </div>
+            <h4>Ghost in the Template</h4>
+            <p>Original AI supply-chain research presented at <span class="feat-stat">OASec 2026 Singapore</span> (Offense track). Shows how a behavioural backdoor hides in the Jinja2 chat template inside a GGUF model with <span class="feat-stat">zero weights changed</span>, plus TempLock, an open-source integrity gate that fails closed when the template drifts from the author's original.</p>
+            <div class="feat-tags">
+                <span class="feat-tag">AI Supply Chain</span>
+                <span class="feat-tag">GGUF</span>
+                <span class="feat-tag">Jinja2</span>
+                <span class="feat-tag">LLM Security</span>
+                <span class="feat-tag">CI/CD</span>
+            </div>
+            <div class="feat-actions">
+                <a href="post.html?post=GIT" class="feat-btn feat-btn-primary"><i class="fa-solid fa-book-open"></i> Read Blog</a>
+                <a href="https://github.com/Ujwal-Ramachandran/TempLock" target="_blank" class="feat-btn feat-btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+        </div>
+
+        <div class="feat-project-card cyber-animate" style="--delay: 1.2s">
             <div class="feat-project-top">
                 <div class="card-icon"><i class="fa-solid fa-terminal"></i></div>
                 <span class="feat-date">Apr 2026</span>
@@ -296,7 +316,7 @@
             </div>
         </div>
 
-        <div class="feat-project-card cyber-animate" style="--delay: 1.2s">
+        <div class="feat-project-card cyber-animate" style="--delay: 1.3s">
             <div class="feat-project-top">
                 <div class="card-icon"><i class="fa-solid fa-user-secret"></i></div>
                 <span class="feat-date">Nov 2025</span>
@@ -316,7 +336,7 @@
             </div>
         </div>
 
-        <div class="feat-project-card cyber-animate" style="--delay: 1.3s">
+        <div class="feat-project-card cyber-animate" style="--delay: 1.4s">
             <div class="feat-project-top">
                 <div class="card-icon"><i class="fa-solid fa-network-wired"></i></div>
                 <span class="feat-date">Apr 2026</span>
@@ -445,8 +465,8 @@
 
       <!-- 2025–2026: Research Projects -->
       <div class="tl-item tl-left tl-hidden">
-        <div class="tl-dot tl-dot-active"><i class="fa-solid fa-brain"></i></div>
-        <div class="tl-card tl-card-active">
+        <div class="tl-dot"><i class="fa-solid fa-brain"></i></div>
+        <div class="tl-card">
           <span class="tl-date">2025 – Present</span>
           <h4 class="tl-title">AI Security Research</h4>
           <p class="tl-body">Building multi-agent phishing detection systems, red-teaming LLMs at scale (81.1% ASR across 450 evaluations), and conducting agentic network forensics,applying AI to harden and challenge modern security boundaries.</p>
@@ -454,6 +474,22 @@
             <span class="tl-tag">Red Teaming</span>
             <span class="tl-tag">Multi-Agent AI</span>
             <span class="tl-tag">LLM Security</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2026: OASec speaker -->
+      <div class="tl-item tl-right tl-hidden">
+        <div class="tl-dot tl-dot-active"><i class="fa-solid fa-microphone-lines"></i></div>
+        <div class="tl-card tl-card-active">
+          <span class="tl-date">Sept 2026</span>
+          <h4 class="tl-title">Speaker at OASec 2026 Singapore</h4>
+          <p class="tl-body">Selected from <strong>60+ international submissions</strong> for the main stage of OASec 2026, Asia Pacific's first practitioner AI security conference, run with the AI Verify Foundation at IMDA's PIXEL. Presented <strong>Ghost in the Template</strong> on the Offense track: a chat-template backdoor hidden inside GGUF models, a live agent hijack, and TempLock, the open-source integrity gate built to stop it.</p>
+          <div class="tl-tags">
+            <span class="tl-tag">Conference Talk</span>
+            <span class="tl-tag">AI Supply Chain</span>
+            <span class="tl-tag">GGUF</span>
+            <span class="tl-tag">TempLock</span>
             <span class="tl-tag">Active</span>
           </div>
         </div>

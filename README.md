@@ -20,6 +20,7 @@ While it maps out my professional evolution across Data Science and Cybersecurit
 ## 🔭 Current Focus
 
   - 🎓 **Masters in Cybersecurity** at NTU Singapore (Aug 2025 - Present)
+  - 🎤 **Speaker at OASec 2026 Singapore**: presented *Ghost in the Template*, chat-template backdoors in GGUF models, plus [TempLock](https://github.com/Ujwal-Ramachandran/TempLock), an open-source model integrity gate
   - 🔐 Exploring advanced cybersecurity concepts and threat analysis
   - 🤖 Building AI/ML solutions for security applications
   - 📡 Developing automation tools and intelligent systems
