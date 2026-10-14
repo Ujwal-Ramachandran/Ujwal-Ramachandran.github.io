@@ -108,6 +108,17 @@ The talk closed on three questions, and they hold up as a checklist for anyone d
 
 Trusting a model takes more than trusting its weights. Treat the chat template as code, because it is.
 
+
+---
+
+## Watch the Full Talk
+
+The complete OASec 2026 presentation, from the main stage at IMDA's PIXEL:
+
+<figure class="post-embed">
+  <iframe src="https://www.youtube.com/embed/8tfIyt6j5iU" title="Ghost in the Template, OASec 2026 Singapore" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</figure>
+
 ---
 
 *Presented at OASec 2026 Singapore, the Offense track. These demos are from that talk.*
