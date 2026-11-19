@@ -1,5 +1,23 @@
 [
   {
+    "id": "AT",
+    "title": "AgentTrap: Cloak-Honey-Trap Deception Against Small Local LLM Agents",
+    "subtitle": "Do the deception defenses that stop a capable hosted pentest agent still stop a small model you can run free on a laptop? A 2x2 experiment on Qwen 3.5 9B with six planted traps.",
+    "date": "November 2026",
+    "readTime": "15 min",
+    "tags": [
+      "Cybersecurity",
+      "AI/ML",
+      "Agentic AI",
+      "Cyber Deception",
+      "LLM Security"
+    ],
+    "excerpt": "A 2025 USENIX Security paper stopped a hosted LLM pentest agent on 11 of 11 machines using deception alone. We rebuilt the idea against a small local agent: with all six traps on, task success fell from roughly 100% to 0%, and hardening only won back 2% to 36%. The traps that worked wasted the agent's budget or handed it a credential that could not work. The ones that just told it to stop were ignored.",
+    "coverIcon": "fa-spider",
+    "file": "blog/AT/AgentTrap.md",
+    "github": "https://github.com/Ujwal-Ramachandran/AgentTrap"
+  },
+  {
     "id": "GIT",
     "title": "Ghost in the Template: Watching a Chat-Template Backdoor Fire, Live",
     "subtitle": "Two demos from my OASec 2026 talk. A poisoned GGUF chat template makes a clean model lie on a trigger phrase, then the same trick hijacks a tool-using agent into making a network request.",
